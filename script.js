@@ -779,6 +779,172 @@ class TarotCards {
     }
 }
 
+// Interactive Zodiac Wheel
+class ZodiacWheel {
+    constructor() {
+        this.canvas = document.getElementById('zodiacWheel');
+        if (!this.canvas) return;
+
+        this.ctx = this.canvas.getContext('2d');
+        this.centerX = this.canvas.width / 2;
+        this.centerY = this.canvas.height / 2;
+        this.radius = 150;
+        this.selectedSign = null;
+
+        this.zodiacSigns = [
+            { name: 'Овен', symbol: '♈', dates: '21 березня - 19 квітня', angle: 0 },
+            { name: 'Телець', symbol: '♉', dates: '20 квітня - 20 травня', angle: 30 },
+            { name: 'Близнята', symbol: '♊', dates: '21 травня - 20 червня', angle: 60 },
+            { name: 'Рак', symbol: '♋', dates: '21 червня - 22 липня', angle: 90 },
+            { name: 'Лев', symbol: '♌', dates: '23 липня - 22 серпня', angle: 120 },
+            { name: 'Діва', symbol: '♍', dates: '23 серпня - 22 вересня', angle: 150 },
+            { name: 'Терези', symbol: '♎', dates: '23 вересня - 22 жовтня', angle: 180 },
+            { name: 'Скорпіон', symbol: '♏', dates: '23 жовтня - 21 листопада', angle: 210 },
+            { name: 'Стрілець', symbol: '♐', dates: '22 листопада - 21 грудня', angle: 240 },
+            { name: 'Козеріг', symbol: '♑', dates: '22 грудня - 19 січня', angle: 270 },
+            { name: 'Водолій', symbol: '♒', dates: '20 січня - 18 лютого', angle: 300 },
+            { name: 'Риби', symbol: '♓', dates: '19 лютого - 20 березня', angle: 330 }
+        ];
+
+        this.predictions = [
+            '🌟 Енергія вогню наповнює вас! Час для нових починань та сміливих рішень.',
+            '🌱 Земна сила допомагає вам будувати міцні основи для майбутнього.',
+            '💨 Повітря приносить вам нові ідеї та цікаві зустрічі.',
+            '🌊 Вода відкриває глибину емоцій та інтуїції.',
+            '☀️ Сонце підсвічує вашу харизму та лідерські якості.',
+            '🌾 Природа нагороджує вас за терпіння та старанність.',
+            '⚖️ Баланс допомагає знайти гармонію в усіх сферах життя.',
+            '🦂 Глибина та сила ведуть вас до трансформації.',
+            '🏹 Свобода та пригоди чекають на вас попереду.',
+            '⛰️ Амбіції та дисципліна приведуть до успіху.',
+            '💡 Інновації та оригінальність відкривають нові можливості.',
+            '🌊 Співчуття та творчість наповнюють ваше життя.'
+        ];
+
+        this.init();
+        this.animate();
+    }
+
+    init() {
+        this.canvas.addEventListener('click', (e) => this.handleClick(e));
+        this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+    }
+
+    handleClick(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left - this.centerX;
+        const y = e.clientY - rect.top - this.centerY;
+        const distance = Math.sqrt(x * x + y * y);
+
+        if (distance <= this.radius && distance >= this.radius * 0.3) {
+            const angle = Math.atan2(y, x) * 180 / Math.PI;
+            const normalizedAngle = (angle + 360) % 360;
+            const signIndex = Math.floor(normalizedAngle / 30);
+
+            this.selectSign(signIndex);
+        }
+    }
+
+    handleMouseMove(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left - this.centerX;
+        const y = e.clientY - rect.top - this.centerY;
+        const distance = Math.sqrt(x * x + y * y);
+
+        if (distance <= this.radius && distance >= this.radius * 0.3) {
+            this.canvas.style.cursor = 'pointer';
+        } else {
+            this.canvas.style.cursor = 'default';
+        }
+    }
+
+    selectSign(index) {
+        this.selectedSign = index;
+        this.updateZodiacInfo();
+        this.animate();
+    }
+
+    updateZodiacInfo() {
+        if (this.selectedSign === null) return;
+
+        const sign = this.zodiacSigns[this.selectedSign];
+        const prediction = this.predictions[this.selectedSign];
+
+        document.getElementById('zodiacSymbol').textContent = sign.symbol;
+        document.getElementById('zodiacName').textContent = sign.name;
+        document.getElementById('zodiacPrediction').textContent = prediction;
+        document.getElementById('zodiacDates').textContent = sign.dates;
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw outer ring
+        this.ctx.beginPath();
+        this.ctx.arc(this.centerX, this.centerY, this.radius, 0, Math.PI * 2);
+        this.ctx.strokeStyle = 'rgba(139, 92, 246, 0.3)';
+        this.ctx.lineWidth = 3;
+        this.ctx.stroke();
+
+        // Draw inner ring
+        this.ctx.beginPath();
+        this.ctx.arc(this.centerX, this.centerY, this.radius * 0.3, 0, Math.PI * 2);
+        this.ctx.strokeStyle = 'rgba(139, 92, 246, 0.5)';
+        this.ctx.lineWidth = 2;
+        this.ctx.stroke();
+
+        // Draw zodiac signs
+        this.zodiacSigns.forEach((sign, index) => {
+            const angle = (sign.angle * Math.PI) / 180;
+            const x = this.centerX + Math.cos(angle) * (this.radius * 0.7);
+            const y = this.centerY + Math.sin(angle) * (this.radius * 0.7);
+
+            // Highlight selected sign
+            if (this.selectedSign === index) {
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, 25, 0, Math.PI * 2);
+                this.ctx.fillStyle = 'rgba(251, 191, 36, 0.3)';
+                this.ctx.fill();
+
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, 22, 0, Math.PI * 2);
+                this.ctx.strokeStyle = 'rgba(251, 191, 36, 0.8)';
+                this.ctx.lineWidth = 2;
+                this.ctx.stroke();
+            }
+
+            // Draw sign symbol
+            this.ctx.fillStyle = this.selectedSign === index ? '#fbbf24' : 'rgba(255, 255, 255, 0.8)';
+            this.ctx.font = '20px Arial';
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText(sign.symbol, x, y);
+
+            // Draw sign name
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            this.ctx.font = '12px Arial';
+            this.ctx.fillText(sign.name, x, y + 35);
+        });
+
+        // Draw connecting lines
+        this.ctx.strokeStyle = 'rgba(139, 92, 246, 0.2)';
+        this.ctx.lineWidth = 1;
+
+        for (let i = 0; i < 12; i++) {
+            const angle = (i * 30 * Math.PI) / 180;
+            const x1 = this.centerX + Math.cos(angle) * (this.radius * 0.3);
+            const y1 = this.centerY + Math.sin(angle) * (this.radius * 0.3);
+            const x2 = this.centerX + Math.cos(angle) * this.radius;
+            const y2 = this.centerY + Math.sin(angle) * this.radius;
+
+            this.ctx.beginPath();
+            this.ctx.moveTo(x1, y1);
+            this.ctx.lineTo(x2, y2);
+            this.ctx.stroke();
+        }
+    }
+}
+
 // Global function for shuffling tarot cards
 function shuffleTarot() {
     const cards = document.querySelectorAll('.tarot-card');
@@ -800,10 +966,43 @@ function shuffleTarot() {
     }
 }
 
+// Floating Astrology Symbols
+class FloatingSymbols {
+    constructor() {
+        this.symbols = ['☾', '☽', '☿', '♀', '♂', '♃', '♄', '⛢', '♅', '♆', '♇'];
+        this.elements = [];
+        this.createSymbols();
+        this.animate();
+    }
+
+    createSymbols() {
+        for (let i = 0; i < 15; i++) {
+            const symbol = document.createElement('div');
+            symbol.className = 'floating-symbol';
+            symbol.textContent = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+            symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDelay = Math.random() * 10 + 's';
+            symbol.style.fontSize = (Math.random() * 20 + 20) + 'px';
+
+            document.body.appendChild(symbol);
+            this.elements.push(symbol);
+        }
+    }
+
+    animate() {
+        this.elements.forEach((symbol, index) => {
+            symbol.style.animation = `floatSymbol ${8 + Math.random() * 4}s ease-in-out infinite`;
+            symbol.style.animationDelay = `${index * 0.5}s`;
+        });
+    }
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
     new FormHandler();
     new StarMap();
     new MagicParticles();
     window.tarotInstance = new TarotCards();
+    new ZodiacWheel();
+    new FloatingSymbols();
 });
