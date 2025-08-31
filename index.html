@@ -146,6 +146,19 @@
     <section id="services" class="services">
         <div class="container">
             <h2 data-translate="services-title">🔮 Мої послуги</h2>
+
+            <!-- Интерактивная звездная карта -->
+            <div class="star-map-container">
+                <canvas id="starMap" class="star-map"></canvas>
+                <div class="star-map-overlay">
+                    <h3>🌟 Інтерактивна карта зоряного неба</h3>
+                    <p>Натисніть на зірки для магічного прогнозу!</p>
+                    <div class="constellation-info" id="constellationInfo">
+                        <div class="constellation-name">Оберіть сузір'я</div>
+                        <div class="constellation-prediction">Ваше майбутнє буде яскравим!</div>
+                    </div>
+                </div>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -182,6 +195,43 @@
                     <div class="service-price">
                         <span data-uk="📊 Безкоштовно" data-en="📊 Free" data-pl="📊 Darmowo">📊 Безкоштовно</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Interactive Tarot Cards -->
+            <div class="tarot-section">
+                <h3>🔮 Інтерактивні карти Таро</h3>
+                <p>Виберіть карту та отримайте персональне передбачення!</p>
+                <div class="tarot-deck" id="tarotDeck">
+                    <div class="tarot-card" data-card="0">
+                        <div class="card-inner">
+                            <div class="card-front">✨</div>
+                            <div class="card-back">
+                                <div class="card-meaning">Сила та мудрість будуть з вами</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tarot-card" data-card="1">
+                        <div class="card-inner">
+                            <div class="card-front">🌙</div>
+                            <div class="card-back">
+                                <div class="card-meaning">Нові можливості відкриються скоро</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tarot-card" data-card="2">
+                        <div class="card-inner">
+                            <div class="card-front">🔮</div>
+                            <div class="card-back">
+                                <div class="card-meaning">Ваші мрії стануть реальністю</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tarot-result" id="tarotResult" style="display: none;">
+                    <h4>🌟 Ваше передбачення:</h4>
+                    <p id="tarotMessage"></p>
+                    <button class="btn btn-secondary" onclick="shuffleTarot()">Перетасувати карти</button>
                 </div>
             </div>
         </div>

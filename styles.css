@@ -349,10 +349,269 @@ section h2 {
     animation: glow 3s ease-in-out infinite alternate;
 }
 
+/* Magic Particles Background */
+.magic-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+/* Star Map */
+.star-map-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 3rem 0;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    background: linear-gradient(45deg, #0f0f23, #1a1a2e);
+}
+
+.star-map {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: crosshair;
+}
+
+.star-map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.1), rgba(30, 58, 138, 0.1));
+    backdrop-filter: blur(1px);
+}
+
+.star-map-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    animation: float 3s ease-in-out infinite;
+}
+
+.star-map-overlay p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.constellation-info {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    min-width: 300px;
+    text-align: center;
+}
+
+.constellation-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.constellation-prediction {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: white;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Tarot Cards */
+.tarot-section {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.tarot-section h3 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.tarot-section p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: var(--text-secondary);
+}
+
+.tarot-deck {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tarot-card {
+    width: 120px;
+    height: 180px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tarot-card:hover {
+    transform: scale(1.1);
+}
+
+.tarot-card.selected {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.card-front {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: var(--accent-color);
+    transform: rotateY(180deg);
+}
+
+.card-meaning {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    padding: 0.5rem;
+    color: white;
+    text-align: center;
+}
+
+/* Floating Animation */
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(0.5deg);
+    }
+}
+
+.tarot-card.floating {
+    animation: floating 6s ease-in-out infinite;
+}
+
+.tarot-card:nth-child(1) { animation-delay: 0s; }
+.tarot-card:nth-child(2) { animation-delay: 1.5s; }
+.tarot-card:nth-child(3) { animation-delay: 3s; }
+
+/* Tarot Result */
+.tarot-result {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.tarot-result h4 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.tarot-result p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Services Section */
 .services {
     padding: 6rem 0;
     background: var(--bg-secondary);
+    position: relative;
+    z-index: 2;
 }
 
 .services-grid {

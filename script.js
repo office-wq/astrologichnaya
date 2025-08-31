@@ -348,7 +348,462 @@ class FormHandler {
     }
 }
 
-// Initialize form handler
+// Interactive Star Map Class
+class StarMap {
+    constructor() {
+        this.canvas = document.getElementById('starMap');
+        if (!this.canvas) return;
+
+        this.ctx = this.canvas.getContext('2d');
+        this.stars = [];
+        this.constellations = [];
+        this.animating = false;
+        this.selectedStar = null;
+
+        this.init();
+        this.createStars();
+        this.createConstellations();
+        this.animate();
+
+        // Add click handler
+        this.canvas.addEventListener('click', (e) => this.handleClick(e));
+        this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+    }
+
+    init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
+    }
+
+    createStars() {
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            this.stars.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                brightness: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                constellation: Math.floor(Math.random() * 12),
+                interactive: Math.random() > 0.7 // 30% of stars are interactive
+            });
+        }
+    }
+
+    createConstellations() {
+        const constellationNames = [
+            'Велика Ведмедиця', 'Мала Ведмедиця', 'Оріон', 'Кассіопея',
+            'Великий Пес', 'Малий Пес', 'Близнята', 'Рак', 'Лев', 'Діва',
+            'Терези', 'Скорпіон'
+        ];
+
+        const predictions = [
+            '🌟 Сила та мудрість будуть з вами!',
+            '✨ Нові можливості відкриються скоро!',
+            '🔮 Ваші мрії стануть реальністю!',
+            '💫 Енергія успіху оточує вас!',
+            '🌙 Час для змін настав!',
+            '⭐ Любов знайде вас у несподіваному місці!',
+            '🌌 Великі досягнення попереду!',
+            '🎯 Ваша мета буде досягнута!',
+            '🌠 Чудеса трапляються щодня!',
+            '💎 Ваш талант буде розкритий!',
+            '🌈 Щастя прийде з усіх сторін!',
+            '🎪 Життя буде яскравим та насиченим!'
+        ];
+
+        for (let i = 0; i < constellationNames.length; i++) {
+            this.constellations.push({
+                name: constellationNames[i],
+                prediction: predictions[i],
+                stars: this.stars.filter(star => star.constellation === i).slice(0, 5)
+            });
+        }
+    }
+
+    animate() {
+        if (!this.animating) {
+            this.animating = true;
+            this.draw();
+        }
+    }
+
+    draw() {
+        // Clear canvas with slight trail effect
+        this.ctx.fillStyle = 'rgba(0, 0, 20, 0.1)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw constellations connections
+        this.drawConstellations();
+
+        // Draw stars
+        this.drawStars();
+
+        requestAnimationFrame(() => this.draw());
+    }
+
+    drawConstellations() {
+        this.ctx.strokeStyle = 'rgba(147, 197, 253, 0.3)';
+        this.ctx.lineWidth = 1;
+
+        this.constellations.forEach(constellation => {
+            if (constellation.stars.length > 1) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(constellation.stars[0].x, constellation.stars[0].y);
+
+                for (let i = 1; i < constellation.stars.length; i++) {
+                    this.ctx.lineTo(constellation.stars[i].x, constellation.stars[i].y);
+                }
+
+                this.ctx.stroke();
+            }
+        });
+    }
+
+    drawStars() {
+        this.stars.forEach((star, index) => {
+            // Update brightness for twinkling effect
+            star.brightness += star.twinkleSpeed;
+            if (star.brightness > 1) star.brightness = 0;
+
+            const alpha = 0.3 + (Math.sin(star.brightness * Math.PI * 2) + 1) * 0.4;
+
+            // Draw star glow
+            const gradient = this.ctx.createRadialGradient(
+                star.x, star.y, 0,
+                star.x, star.y, star.radius * 4
+            );
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+            gradient.addColorStop(0.5, `rgba(147, 197, 253, ${alpha * 0.5})`);
+            gradient.addColorStop(1, 'rgba(147, 197, 253, 0)');
+
+            this.ctx.fillStyle = gradient;
+            this.ctx.beginPath();
+            this.ctx.arc(star.x, star.y, star.radius * 4, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Draw star core
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha + 0.3})`;
+            this.ctx.beginPath();
+            this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Highlight interactive stars
+            if (star.interactive) {
+                this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha * 0.8})`;
+                this.ctx.lineWidth = 1;
+                this.ctx.stroke();
+            }
+        });
+    }
+
+    handleClick(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Find clicked star
+        const clickedStar = this.stars.find(star => {
+            const distance = Math.sqrt((star.x - x) ** 2 + (star.y - y) ** 2);
+            return distance < star.radius * 6 && star.interactive;
+        });
+
+        if (clickedStar) {
+            this.selectedStar = clickedStar;
+            this.showConstellationInfo(clickedStar);
+            this.createClickEffect(x, y);
+        }
+    }
+
+    handleMouseMove(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Check if hovering over interactive star
+        const hoveredStar = this.stars.find(star => {
+            const distance = Math.sqrt((star.x - x) ** 2 + (star.y - y) ** 2);
+            return distance < star.radius * 6 && star.interactive;
+        });
+
+        this.canvas.style.cursor = hoveredStar ? 'pointer' : 'default';
+    }
+
+    showConstellationInfo(star) {
+        const info = document.getElementById('constellationInfo');
+        const constellation = this.constellations[star.constellation];
+
+        if (info && constellation) {
+            info.querySelector('.constellation-name').textContent = constellation.name;
+            info.querySelector('.constellation-prediction').textContent = constellation.prediction;
+
+            // Add glow effect
+            info.style.animation = 'none';
+            setTimeout(() => {
+                info.style.animation = 'glow 2s ease-in-out';
+            }, 10);
+        }
+    }
+
+    createClickEffect(x, y) {
+        // Create particle explosion
+        for (let i = 0; i < 20; i++) {
+            const particle = {
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 10,
+                vy: (Math.random() - 0.5) * 10,
+                life: 60,
+                color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`
+            };
+
+            this.animateParticle(particle);
+        }
+    }
+
+    animateParticle(particle) {
+        if (particle.life <= 0) return;
+
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.vy += 0.1; // gravity
+        particle.life--;
+
+        this.ctx.fillStyle = particle.color;
+        this.ctx.globalAlpha = particle.life / 60;
+        this.ctx.beginPath();
+        this.ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
+        this.ctx.fill();
+        this.ctx.globalAlpha = 1;
+
+        requestAnimationFrame(() => this.animateParticle(particle));
+    }
+}
+
+// Magic Particles Background
+class MagicParticles {
+    constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.className = 'magic-particles';
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: 0, y: 0 };
+
+        document.body.appendChild(this.canvas);
+        this.init();
+        this.createParticles();
+        this.animate();
+
+        document.addEventListener('mousemove', (e) => {
+            this.mouse.x = e.clientX;
+            this.mouse.y = e.clientY;
+        });
+    }
+
+    init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    createParticles() {
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 3 + 1,
+                life: Math.random() * 100 + 50,
+                maxLife: 150,
+                color: this.getRandomColor(),
+                energy: Math.random()
+            });
+        }
+    }
+
+    getRandomColor() {
+        const colors = [
+            'rgba(147, 197, 253, 0.6)', // Blue
+            'rgba(168, 85, 247, 0.6)',  // Purple
+            'rgba(236, 72, 153, 0.6)',  // Pink
+            'rgba(34, 197, 94, 0.6)',   // Green
+            'rgba(251, 191, 36, 0.6)'   // Yellow
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.particles.forEach((particle, index) => {
+            // Update position
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            // Mouse interaction
+            const dx = this.mouse.x - particle.x;
+            const dy = this.mouse.y - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                particle.vx += dx * 0.0001;
+                particle.vy += dy * 0.0001;
+            }
+
+            // Boundary check
+            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+
+            // Update life
+            particle.life--;
+            if (particle.life <= 0) {
+                particle.x = Math.random() * this.canvas.width;
+                particle.y = Math.random() * this.canvas.height;
+                particle.life = particle.maxLife;
+                particle.color = this.getRandomColor();
+            }
+
+            // Draw particle
+            const alpha = particle.life / particle.maxLife;
+            this.ctx.globalAlpha = alpha;
+
+            // Draw energy field
+            const gradient = this.ctx.createRadialGradient(
+                particle.x, particle.y, 0,
+                particle.x, particle.y, particle.size * 3
+            );
+            gradient.addColorStop(0, particle.color);
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+            this.ctx.fillStyle = gradient;
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Draw core
+            this.ctx.fillStyle = particle.color;
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            this.ctx.globalAlpha = 1;
+        });
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Interactive Tarot Cards
+class TarotCards {
+    constructor() {
+        this.deck = document.getElementById('tarotDeck');
+        this.result = document.getElementById('tarotResult');
+        this.message = document.getElementById('tarotMessage');
+        this.selectedCard = null;
+
+        if (this.deck) {
+            this.init();
+        }
+    }
+
+    init() {
+        const cards = this.deck.querySelectorAll('.tarot-card');
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => this.selectCard(card, index));
+        });
+
+        // Add floating animation
+        this.animateCards();
+    }
+
+    selectCard(card, index) {
+        if (this.selectedCard) return; // Only one card per session
+
+        this.selectedCard = card;
+        card.classList.add('selected');
+
+        // Flip animation
+        setTimeout(() => {
+            card.querySelector('.card-inner').classList.add('flipped');
+        }, 500);
+
+        // Show result
+        setTimeout(() => {
+            this.showResult(index);
+        }, 1500);
+    }
+
+    showResult(index) {
+        const predictions = [
+            '🌟 Сила та мудрість будуть з вами! Ви готові до нових викликів, які принесуть вам глибоке розуміння себе.',
+            '🌙 Нові можливості відкриються скоро! Місяць принесе вам несподівані сюрпризи та нові шляхи для розвитку.',
+            '🔮 Ваші мрії стануть реальністю! Зірки вишикувалися так, щоб ваші бажання здійснилися в найближчому майбутньому.',
+            '💫 Енергія успіху оточує вас! Ви на правильному шляху до досягнення своїх цілей.',
+            '🌙 Час для змін настав! Старе відходить, щоб дати місце новому та прекрасному.',
+            '⭐ Любов знайде вас у несподіваному місці! Відкрийте своє серце для нових можливостей.',
+            '🌌 Великі досягнення попереду! Ваші зусилля будуть винагороджені по заслугах.',
+            '🎯 Ваша мета буде досягнута! Зосередьтеся на своїх цілях та йдіть вперед.',
+            '🌠 Чудеса трапляються щодня! Навчіться їх помічати та цінувати.',
+            '💎 Ваш талант буде розкритий! Час поділитися своїми дарами зі світом.',
+            '🌈 Щастя прийде з усіх сторін! Будьте відкриті до всіх можливостей.',
+            '🎪 Життя буде яскравим та насиченим! Готуйтеся до незабутніх пригод!'
+        ];
+
+        this.message.textContent = predictions[index % predictions.length];
+        this.result.style.display = 'block';
+
+        // Scroll to result
+        this.result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    animateCards() {
+        const cards = this.deck.querySelectorAll('.tarot-card');
+
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+            card.classList.add('floating');
+        });
+    }
+}
+
+// Global function for shuffling tarot cards
+function shuffleTarot() {
+    const cards = document.querySelectorAll('.tarot-card');
+    const result = document.getElementById('tarotResult');
+
+    // Reset all cards
+    cards.forEach(card => {
+        card.classList.remove('selected');
+        card.querySelector('.card-inner').classList.remove('flipped');
+    });
+
+    // Hide result
+    result.style.display = 'none';
+
+    // Reset selected card
+    const tarotInstance = window.tarotInstance;
+    if (tarotInstance) {
+        tarotInstance.selectedCard = null;
+    }
+}
+
+// Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
     new FormHandler();
+    new StarMap();
+    new MagicParticles();
+    window.tarotInstance = new TarotCards();
 });
