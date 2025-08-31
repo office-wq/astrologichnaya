@@ -88,20 +88,94 @@ document.addEventListener('DOMContentLoaded', function() {
     window.tarotInstance = new TarotCards();
     new ZodiacWheel();
     new FloatingSymbols();
+    
+    // Инициализируем мобильную навигацию
+    initMobileNavigation();
+    
+    // Инициализируем плавную прокрутку для всех ссылок
+    initSmoothScrolling();
 });
+
+// Инициализация мобильной навигации
+function initMobileNavigation() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Закрываем меню при клике на ссылку
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Закрываем меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Инициализация плавной прокрутки
+function initSmoothScrolling() {
+    // Обрабатываем все ссылки с якорями
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Плавная прокрутка к элементу
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Добавляем небольшой отступ для фиксированного хедера
+                setTimeout(() => {
+                    window.scrollBy({
+                        top: -80,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        });
+    });
+}
 
 // Инициализация переворачивающейся таблички
 function initMottoCard() {
     const mottoCard = document.querySelector('.motto-card');
     if (mottoCard) {
+        // Переворачиваем при клике
         mottoCard.addEventListener('click', function() {
             this.classList.toggle('flipped');
         });
         
-        // Автоматическое переворачивание каждые 3 секунды
+        // Переворачиваем при наведении
+        mottoCard.addEventListener('mouseenter', function() {
+            this.classList.add('flipped');
+        });
+        
+        mottoCard.addEventListener('mouseleave', function() {
+            this.classList.remove('flipped');
+        });
+        
+        // Автоматическое переворачивание каждые 4 секунды
         setInterval(() => {
             mottoCard.classList.toggle('flipped');
-        }, 3000);
+        }, 4000);
     }
 }
 

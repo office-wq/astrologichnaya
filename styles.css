@@ -1491,6 +1491,20 @@ section h2 {
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
+    /* Делаем кнопки языка компактными на мобильных */
+    .nav-lang {
+        display: flex;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .lang-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
