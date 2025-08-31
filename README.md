@@ -34,7 +34,7 @@
 
 ## 🌐 Демо
 
-Сайт доступен по адресу: [https://username.github.io/repository-name](https://username.github.io/repository-name)
+Сайт доступен по адресу: [https://office-wq.github.io/astrologichnaya](https://office-wq.github.io/astrologichnaya)
 
 ## 📧 Контакты
 
