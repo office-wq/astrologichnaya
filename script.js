@@ -1,8 +1,6 @@
 // Импорт переводов из отдельного модуля
 import { translations } from './translations.js';
 
-console.log('Translations loaded:', translations);
-
 // Функция определения языка браузера
 function detectBrowserLanguage() {
     const browserLang = navigator.language || navigator.userLanguage;
@@ -23,10 +21,6 @@ let currentLang = detectBrowserLanguage();
 
 // Функция смены языка
 function changeLanguage(lang) {
-    console.log('Changing language to:', lang);
-    console.log('Available translations:', Object.keys(translations));
-    console.log('Current translations object:', translations);
-    
     currentLang = lang;
     
     // Обновляем активную кнопку
@@ -43,10 +37,8 @@ function changeLanguage(lang) {
     }
     
     // Обновляем все элементы с data-translate
-    let updatedCount = 0;
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        console.log('Processing element with key:', key);
         
         if (translations[lang] && translations[lang][key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
@@ -54,16 +46,11 @@ function changeLanguage(lang) {
             } else {
                 element.textContent = translations[lang][key];
             }
-            updatedCount++;
-        } else {
-            console.warn('Translation missing for key:', key, 'in language:', lang);
         }
     });
     
     // Обновляем переворачивающуюся табличку с девизами
     updateMottoCard(lang);
-    
-    console.log(`Language changed successfully to: ${lang}, updated ${updatedCount} elements`);
 }
 
 // Функция обновления переворачивающейся таблички с девизами
@@ -80,29 +67,16 @@ function updateMottoCard(lang) {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page loaded, initializing language system...');
-    console.log('Current language detected:', currentLang);
-    
-    // Проверяем наличие кнопок языка
-    const langButtons = document.querySelectorAll('.lang-btn');
-    console.log('Found language buttons:', langButtons.length);
-    
     // Добавляем обработчики для кнопок языка
-    langButtons.forEach((btn, index) => {
-        const lang = btn.getAttribute('data-lang');
-        console.log(`Button ${index}: ${lang}`);
-        
+    document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
-            console.log('Language button clicked:', lang);
             changeLanguage(lang);
         });
     });
     
     // Устанавливаем язык браузера
-    console.log('Setting initial language to:', currentLang);
     changeLanguage(currentLang);
-    console.log('Language system initialized');
     
     // Инициализируем переворачивающуюся табличку
     initMottoCard();
