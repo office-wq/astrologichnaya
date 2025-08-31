@@ -298,7 +298,8 @@
             <h2 data-uk="🌟 Готові розкрити своє призначення?" data-en="🌟 Ready to Unlock Your Purpose?" data-pl="🌟 Gotowy odkryć swoje przeznaczenie?">🌟 Готові розкрити своє призначення?</h2>
             <div class="contact-content">
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" name="contact" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact" />
                         <div class="form-group">
                             <label for="name" data-uk="🌟 Ваше священне ім'я" data-en="🌟 Your Sacred Name" data-pl="🌟 Twoje święte imię">🌟 Ваше священне ім'я</label>
                             <input type="text" id="name" name="name" required>
@@ -438,6 +439,7 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
     
     <!-- Google Analytics 4 -->

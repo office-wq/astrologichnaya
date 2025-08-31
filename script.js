@@ -289,18 +289,24 @@ class FormHandler {
         submitBtn.disabled = true;
         
         try {
-            // Simulate API call
-            await this.simulateApiCall(data);
-            
-            // Show success modal
-            this.showModal();
-            
-            // Reset form
-            this.form.reset();
-            
+            const result = await this.simulateApiCall(data);
+
+            if (result.success) {
+                // Show success modal
+                this.showModal();
+                // Reset form
+                this.form.reset();
+            } else if (result.manualContact) {
+                // Show manual contact info
+                alert(`${result.message}\n\n📱 WhatsApp: +48 690 275 119\n💬 Telegram: @astrologichnaya\n📧 Email: через форму на сайті`);
+                // Don't reset form, user can try again
+            } else {
+                alert('Помилка відправки. Спробуйте ще раз.');
+            }
+
         } catch (error) {
             console.error('Form submission error:', error);
-            alert('Помилка відправки. Спробуйте ще раз.');
+            alert('Помилка відправки. Зв\'яжіться зі мною напряму:\n\n📱 WhatsApp: +48 690 275 119\n💬 Telegram: @astrologichnaya');
         } finally {
             // Restore button state
             submitBtn.textContent = originalText;
@@ -309,13 +315,106 @@ class FormHandler {
     }
     
     async simulateApiCall(data) {
-        // Simulate network delay
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                console.log('Form data submitted:', data);
-                resolve({ success: true });
-            }, 1500);
-        });
+        console.log('Sending form data:', data);
+
+        // Способ 1: Netlify Forms (если сайт на Netlify)
+        if (window.location.hostname.includes('netlify')) {
+            try {
+                const formData = new FormData();
+                formData.append('form-name', 'contact');
+                formData.append('name', data.name);
+                formData.append('email', data.email);
+                formData.append('phone', data.phone || '');
+                formData.append('service', data.service);
+                formData.append('message', data.message || '');
+
+                const response = await fetch('/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    console.log('Form submitted to Netlify Forms');
+                    return { success: true };
+                }
+            } catch (error) {
+                console.log('Netlify Forms failed, trying alternatives...');
+            }
+        }
+
+        // Способ 2: Отправка в Telegram бота
+        const BOT_TOKEN = window.CONFIG?.TELEGRAM?.BOT_TOKEN || 'YOUR_TELEGRAM_BOT_TOKEN';
+        const CHAT_ID = window.CONFIG?.TELEGRAM?.CHAT_ID || 'YOUR_TELEGRAM_CHAT_ID';
+
+        const message = `
+🌟 НОВА ЗАЯВКА НА КОНСУЛЬТАЦІЮ! 🌟
+
+👤 Ім'я: ${data.name}
+📧 Email: ${data.email}
+📱 Телефон: ${data.phone || 'Не вказано'}
+🔮 Послуга: ${data.service}
+📝 Повідомлення: ${data.message || 'Без додаткового повідомлення'}
+
+⏰ Час заявки: ${new Date().toLocaleString('uk-UA')}
+        `;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+
+            if (response.ok) {
+                console.log('Form data sent to Telegram:', data);
+                return { success: true };
+            }
+        } catch (error) {
+            console.error('Telegram failed:', error);
+        }
+
+        // Способ 3: Email через Web3Forms (бесплатно, без регистрации)
+        try {
+            const web3FormData = {
+                access_key: window.CONFIG?.WEB3FORMS?.ACCESS_KEY || 'ВАШ_WEB3FORMS_ACCESS_KEY', // Получите на web3forms.com
+                name: data.name,
+                email: data.email,
+                phone: data.phone || '',
+                service: data.service,
+                message: data.message || '',
+                subject: 'Нова заявка на консультацію - Оксана Семенович'
+            };
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(web3FormData)
+            });
+
+            if (response.ok) {
+                console.log('Form data sent to Web3Forms:', data);
+                return { success: true };
+            }
+        } catch (error) {
+            console.error('Web3Forms failed:', error);
+        }
+
+        // Способ 4: Показать контакты для ручной связи
+        console.log('All automated methods failed, showing manual contact info');
+        return {
+            success: false,
+            manualContact: true,
+            message: 'Не вдалося відправити заявку автоматично. Зв\'яжіться зі мною напряму:'
+        };
     }
     
     showModal() {
