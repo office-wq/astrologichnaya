@@ -243,6 +243,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Initializing smooth scrolling...');
         initSmoothScrolling();
         
+        // Инициализируем отслеживание прокрутки
+        console.log('Initializing scroll spy...');
+        initScrollSpy();
+        
         console.log('All components initialized!');
     } catch (error) {
         console.error('Error during component initialization:', error);
@@ -289,19 +293,59 @@ function initSmoothScrolling() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                // Получаем высоту хедера
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+                
+                // Вычисляем позицию для прокрутки
+                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                
                 // Плавная прокрутка к элементу
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
                 
-                // Добавляем небольшой отступ для фиксированного хедера
-                setTimeout(() => {
-                    window.scrollBy({
-                        top: -80,
-                        behavior: 'smooth'
-                    });
-                }, 100);
+                // Обновляем активную ссылку в навигации
+                updateActiveNavLink(targetId);
+            }
+        });
+    });
+}
+
+// Обновление активной ссылки в навигации
+function updateActiveNavLink(targetId) {
+    // Убираем активный класс со всех ссылок
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Добавляем активный класс к соответствующей ссылке
+    const activeLink = document.querySelector(`.nav-menu a[href="${targetId}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+// Отслеживание прокрутки для обновления активной навигации
+function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+    
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     });
