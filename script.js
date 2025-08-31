@@ -1,19 +1,150 @@
-// Импорт переводов из отдельного модуля
-import { translations } from './translations.js';
+// Переводы для всех языков
+const translations = {
+    uk: {
+        'page-title': '🌟 Оксана Семенович | Ведический астролог-прогнозист',
+        'nav-brand': '🌟 Астрологічна',
+        'nav-home': 'Головна',
+        'nav-services': 'Послуги',
+        'nav-about': 'Про мене',
+        'nav-contact': 'Контакти',
+        'hero-title': 'Оксана Семенович | Астролог-Діва',
+        'hero-motto-1': 'Чітко. Точно. Логічно. Корисно.',
+        'hero-motto-2': 'Я-Оксана',
+        'hero-subtitle': 'Ведический астролог-прогнозист',
+        'hero-description': 'Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии.',
+        'services-title': 'Мої послуги',
+        'service-1-title': 'Персональна консультація',
+        'service-1-description': 'Детальний аналіз вашої натальної карти з практичними рекомендаціями',
+        'service-1-price': '50€',
+        'service-2-title': 'Курс «Я-астролог»',
+        'service-2-description': 'Повноцінне навчання ведичній астрології з нуля',
+        'service-2-price': '300€',
+        'service-3-title': 'Астропрогнози',
+        'service-3-description': 'Щомісячні прогнози для всіх знаків зодіаку',
+        'service-3-price': 'Безкоштовно',
+        'about-title': 'Про мене',
+        'about-content': 'Ведический астролог-прогнозист Оксана Семенович. Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии. На основании своего практического опыта я создала курс по ведической астрологии «Я-астролог», который высоко оценили даже те, кто уже учился в других школах астрологии.',
+        'contact-title': 'Зв\'яжіться зі мною',
+        'contact-description': 'Оберіть зручний для вас спосіб зв\'язку',
+        'form-name': 'Ваше ім\'я',
+        'form-email': 'Ваш email',
+        'form-message': 'Ваше повідомлення',
+        'form-submit': 'Надіслати',
+        'footer-copyright': '© 2025 Оксана Семенович. Всі права захищені.'
+    },
+    en: {
+        'page-title': '🌟 Oksana Semenovich | Vedic Astrologer-Forecaster',
+        'nav-brand': '🌟 Astrological Shop',
+        'nav-home': 'Home',
+        'nav-services': 'Services',
+        'nav-about': 'About',
+        'nav-contact': 'Contact',
+        'hero-title': 'Oksana Semenovich | Astrologer-Virgo',
+        'hero-motto-1': 'Clear. Precise. Logical. Useful.',
+        'hero-motto-2': 'I-Oksana',
+        'hero-subtitle': 'Vedic Astrologer-Forecaster',
+        'hero-description': 'Author of the YouTube channel "Astrology is accessible to everyone!", where every month I publish accessible, amazingly accurate astrological forecasts and share other useful and interesting information about astrology.',
+        'services-title': 'My Services',
+        'service-1-title': 'Personal Consultation',
+        'service-1-description': 'Detailed analysis of your natal chart with practical recommendations',
+        'service-1-price': '50€',
+        'service-2-title': 'Course "I-Astrologer"',
+        'service-2-description': 'Complete training in Vedic astrology from scratch',
+        'service-2-price': '300€',
+        'service-3-title': 'Astrological Forecasts',
+        'service-3-description': 'Monthly forecasts for all zodiac signs',
+        'service-3-price': 'Free',
+        'about-title': 'About Me',
+        'about-content': 'Vedic astrologer-forecaster Oksana Semenovich. Author of the YouTube channel "Astrology is accessible to everyone!", where every month I publish accessible, amazingly accurate astrological forecasts and share other useful and interesting information about astrology. Based on my practical experience, I created a course in Vedic astrology "I-Astrologer", which was highly appreciated even by those who had already studied in other astrology schools.',
+        'contact-title': 'Contact Me',
+        'contact-description': 'Choose a convenient way to contact me',
+        'form-name': 'Your name',
+        'form-email': 'Your email',
+        'form-message': 'Your message',
+        'form-submit': 'Send',
+        'footer-copyright': '© 2025 Oksana Semenovich. All rights reserved.'
+    },
+    pl: {
+        'page-title': '🌟 Oksana Semenovich | Astrolog Wedyjski-Prognostyk',
+        'nav-brand': '🌟 Sklep Astrologiczny',
+        'nav-home': 'Strona główna',
+        'nav-services': 'Usługi',
+        'nav-about': 'O mnie',
+        'nav-contact': 'Kontakt',
+        'hero-title': 'Oksana Semenovich | Astrolog-Panna',
+        'hero-motto-1': 'Jasno. Dokładnie. Logicznie. Użytecznie.',
+        'hero-motto-2': 'Ja-Oksana',
+        'hero-subtitle': 'Astrolog Wedyjski-Prognostyk',
+        'hero-description': 'Autorka kanału YouTube "Astrologia dostępna dla każdego!", gdzie co miesiąc publikuję dostępne, zadziwiająco dokładne prognozy astrologiczne i dzielę się innymi przydatnymi i interesującymi informacjami o astrologii.',
+        'services-title': 'Moje usługi',
+        'service-1-title': 'Konsultacja osobista',
+        'service-1-description': 'Szczegółowa analiza twojej karty natalnej z praktycznymi zaleceniami',
+        'service-1-price': '50€',
+        'service-2-title': 'Kurs "Ja-Astrolog"',
+        'service-2-description': 'Kompletne szkolenie z astrologii wedyjskiej od podstaw',
+        'service-2-price': '300€',
+        'service-3-title': 'Prognozy astrologiczne',
+        'service-3-description': 'Miesięczne prognozy dla wszystkich znaków zodiaku',
+        'service-3-price': 'Za darmo',
+        'about-title': 'O mnie',
+        'about-content': 'Astrolog wedyjski-prognostyk Oksana Semenovich. Autorka kanału YouTube "Astrologia dostępna dla każdego!", gdzie co miesiąc publikuję dostępne, zadziwiająco dokładne prognozy astrologiczne i dzielę się innymi przydatnymi i interesującymi informacjami o astrologii. Na podstawie mojego praktycznego doświadczenia stworzyłam kurs astrologii wedyjskiej "Ja-Astrolog", który został wysoko oceniony nawet przez tych, którzy już uczyli się w innych szkołach astrologii.',
+        'contact-title': 'Skontaktuj się ze mną',
+        'contact-description': 'Wybierz wygodny dla siebie sposób kontaktu',
+        'form-name': 'Twoje imię',
+        'form-email': 'Twój email',
+        'form-message': 'Twoja wiadomość',
+        'form-submit': 'Wyślij',
+        'footer-copyright': '© 2025 Oksana Semenovich. Wszelkie prawa zastrzeżone.'
+    },
+    ru: {
+        'page-title': '🌟 Оксана Семенович | Ведический астролог-прогнозист',
+        'nav-brand': '🌟 Астрологическая',
+        'nav-home': 'Главная',
+        'nav-services': 'Услуги',
+        'nav-about': 'Обо мне',
+        'nav-contact': 'Контакты',
+        'hero-title': 'Оксана Семенович | Астролог-Дева',
+        'hero-motto-1': 'Четко. Точно. Логично. Полезно.',
+        'hero-motto-2': 'Я-Оксана',
+        'hero-subtitle': 'Ведический астролог-прогнозист',
+        'hero-description': 'Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии.',
+        'services-title': 'Мои услуги',
+        'service-1-title': 'Персональная консультация',
+        'service-1-description': 'Детальный анализ вашей натальной карты с практическими рекомендациями',
+        'service-1-price': '50€',
+        'service-2-title': 'Курс «Я-астролог»',
+        'service-2-description': 'Полноценное обучение ведической астрологии с нуля',
+        'service-2-price': '300€',
+        'service-3-title': 'Астропрогнозы',
+        'service-3-description': 'Ежемесячные прогнозы для всех знаков зодиака',
+        'service-3-price': 'Бесплатно',
+        'about-title': 'Обо мне',
+        'about-content': 'Ведический астролог-прогнозист Оксана Семенович. Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии. На основании своего практического опыта я создала курс по ведической астрологии «Я-астролог», который высоко оценили даже те, кто уже учился в других школах астрологии.',
+        'contact-title': 'Свяжитесь со мной',
+        'contact-description': 'Выберите удобный для вас способ связи',
+        'form-name': 'Ваше имя',
+        'form-email': 'Ваш email',
+        'form-message': 'Ваше сообщение',
+        'form-submit': 'Отправить',
+        'footer-copyright': '© 2025 Оксана Семенович. Все права защищены.'
+    }
+};
 
 // Функция определения языка браузера
 function detectBrowserLanguage() {
     const browserLang = navigator.language || navigator.userLanguage;
     const lang = browserLang.split('-')[0]; // Получаем только основную часть (ru, uk, en, pl)
 
-    // Проверяем, поддерживается ли язык
-    const supportedLangs = ['ru', 'uk', 'en', 'pl'];
-    if (supportedLangs.includes(lang)) {
-        return lang;
+    // Специальная логика для определения языка
+    if (lang === 'ru') {
+        return 'en'; // Русский браузер -> английский сайт
+    } else if (lang === 'uk') {
+        return 'uk'; // Украинский браузер -> украинский сайт
+    } else if (lang === 'pl') {
+        return 'pl'; // Польский браузер -> польский сайт
+    } else {
+        return 'en'; // Все остальные -> английский сайт
     }
-
-    // Если язык не поддерживается, возвращаем украинский по умолчанию
-    return 'uk';
 }
 
 // Текущий язык
@@ -75,25 +206,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    console.log('TEST: Before changeLanguage call');
     // Устанавливаем язык браузера
     changeLanguage(currentLang);
+    console.log('TEST: After changeLanguage call');
     
-    // Инициализируем переворачивающуюся табличку
-    initMottoCard();
+    console.log('Starting component initialization...');
+    console.log('About to enter try-catch block...');
     
-    // Инициализируем все остальные компоненты
-    new FormHandler();
-    new StarMap();
-    new MagicParticles();
-    window.tarotInstance = new TarotCards();
-    new ZodiacWheel();
-    new FloatingSymbols();
-    
-    // Инициализируем мобильную навигацию
-    initMobileNavigation();
-    
-    // Инициализируем плавную прокрутку для всех ссылок
-    initSmoothScrolling();
+    try {
+        console.log('Entered try block successfully');
+        // Инициализируем переворачивающуюся табличку
+        console.log('Calling initMottoCard...');
+        initMottoCard();
+        console.log('initMottoCard completed');
+        
+        // Инициализируем все остальные компоненты
+        console.log('Initializing FormHandler...');
+        new FormHandler();
+        console.log('Initializing StarMap...');
+        new StarMap();
+        console.log('Initializing MagicParticles...');
+        new MagicParticles();
+        console.log('Initializing TarotCards...');
+        window.tarotInstance = new TarotCards();
+        console.log('Initializing ZodiacWheel...');
+        new ZodiacWheel();
+        console.log('Initializing FloatingSymbols...');
+        new FloatingSymbols();
+        
+        // Инициализируем мобильную навигацию
+        console.log('Initializing mobile navigation...');
+        initMobileNavigation();
+        
+        // Инициализируем плавную прокрутку для всех ссылок
+        console.log('Initializing smooth scrolling...');
+        initSmoothScrolling();
+        
+        console.log('All components initialized!');
+    } catch (error) {
+        console.error('Error during component initialization:', error);
+    }
 });
 
 // Инициализация мобильной навигации
@@ -157,25 +310,56 @@ function initSmoothScrolling() {
 // Инициализация переворачивающейся таблички
 function initMottoCard() {
     const mottoCard = document.querySelector('.motto-card');
+    console.log('Motto card found:', mottoCard);
+    
     if (mottoCard) {
-        // Переворачиваем при клике
-        mottoCard.addEventListener('click', function() {
-            this.classList.toggle('flipped');
-        });
+        let autoFlipTimer;
+        let returnTimer;
+        
+        console.log('Initializing motto card flip functionality');
         
         // Переворачиваем при наведении
         mottoCard.addEventListener('mouseenter', function() {
+            console.log('Mouse entered, flipping card');
+            // Очищаем таймер возврата
+            if (returnTimer) {
+                clearTimeout(returnTimer);
+                returnTimer = null;
+            }
+            // Мгновенно переворачиваем на обратную сторону
             this.classList.add('flipped');
+            console.log('Card flipped, classes:', this.className);
         });
         
+        // При убирании мыши - через 6 секунд возвращаемся на лицевую сторону
         mottoCard.addEventListener('mouseleave', function() {
-            this.classList.remove('flipped');
+            console.log('Mouse left, setting return timer');
+            returnTimer = setTimeout(() => {
+                console.log('Return timer fired, unflipping card');
+                this.classList.remove('flipped');
+                console.log('Card unflipped, classes:', this.className);
+            }, 6000);
         });
         
-        // Автоматическое переворачивание каждые 4 секунды
-        setInterval(() => {
-            mottoCard.classList.toggle('flipped');
-        }, 4000);
+        // Автоматическое переворачивание каждые 6 секунд
+        autoFlipTimer = setInterval(() => {
+            // Если мышь не наведена, то переворачиваем
+            if (!mottoCard.matches(':hover')) {
+                console.log('Auto flip timer fired, toggling card');
+                mottoCard.classList.toggle('flipped');
+                console.log('Card auto-flipped, classes:', mottoCard.className);
+            }
+        }, 6000);
+        
+        // Очищаем таймеры при уничтожении элемента
+        mottoCard.addEventListener('remove', () => {
+            if (autoFlipTimer) clearInterval(autoFlipTimer);
+            if (returnTimer) clearTimeout(returnTimer);
+        });
+        
+        console.log('Motto card initialization complete');
+    } else {
+        console.error('Motto card not found!');
     }
 }
 
