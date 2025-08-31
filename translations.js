@@ -10,8 +10,8 @@ export const translations = {
         
         // Hero Section
         'hero-title': '🌟 Оксана Семенович | Астролог-Діва',
-        'hero-motto-1': '✨ Знаю те, що приховано від інших',
-        'hero-motto-2': '✨ Чітко. Точно. Логічно. Корисно.',
+        'hero-motto-1': '✨ Чітко. Точно. Логічно. Корисно.',
+        'hero-motto-2': '✨ Знаю те, що приховано від інших',
         'hero-description': 'Чи відчували ви, що щось більше чекає на вас? Чи готові ви відкрити своє справжнє призначення? Я допоможу вам знайти відповіді, які змінять ваше життя назавжди.',
         'hero-btn-primary': '🌟 Записатися на консультацію (50€)',
         'hero-btn-secondary': '🔮 Безкоштовні астропрогнози на YouTube',
@@ -85,7 +85,7 @@ export const translations = {
     
     en: {
         // Header
-        'nav-brand': '🌟 Astrological Shop',
+        'nav-brand': '🌟 Astrological',
         'nav-home': 'Home',
         'nav-services': 'Services',
         'nav-about': 'About',
@@ -93,8 +93,8 @@ export const translations = {
         
         // Hero Section
         'hero-title': '🌟 Oksana Semenovich | Astrologer-Virgo',
-        'hero-motto-1': '✨ I know what is hidden from others',
-        'hero-motto-2': '✨ Clear. Accurate. Logical. Useful.',
+        'hero-motto-1': '✨ Clear. Accurate. Logical. Useful.',
+        'hero-motto-2': '✨ I know what is hidden from others',
         'hero-description': 'Have you ever felt that something greater awaits you? Are you ready to discover your true purpose? I will help you find answers that will change your life forever.',
         'hero-btn-primary': '🌟 Book a Consultation (50€)',
         'hero-btn-secondary': '🔮 Free Astro Forecasts on YouTube',
@@ -168,16 +168,16 @@ export const translations = {
     
     pl: {
         // Header
-        'nav-brand': '🌟 Sklep Astrologiczny',
+        'nav-brand': '🌟 Astrologiczna',
         'nav-home': 'Główna',
         'nav-services': 'Usługi',
         'nav-about': 'O mnie',
         'nav-contact': 'Kontakt',
         
         // Hero Section
-        'hero-title': '🌟 Oksana Semenovich | Astrolog-Panna',
-        'hero-motto-1': '✨ Wiem to, co jest ukryte przed innymi',
-        'hero-motto-2': '✨ Jasno. Dokładnie. Logicznie. Użytecznie.',
+        'hero-title': '🌟 Oksana Semenovich | Astrolog-Dziewica',
+        'hero-motto-1': '✨ Jasno. Dokładnie. Logicznie. Użytecznie.',
+        'hero-motto-2': '✨ Wiem to, co jest ukryte przed innymi',
         'hero-description': 'Czy kiedykolwiek czułeś, że czeka na Ciebie coś większego? Czy jesteś gotowy odkryć swoje prawdziwe przeznaczenie? Pomogę Ci znaleźć odpowiedzi, które zmienią Twoje życie na zawsze.',
         'hero-btn-primary': '🌟 Zarezerwuj konsultację (50€)',
         'hero-btn-secondary': '🔮 Darmowe prognozy astrologiczne na YouTube',
@@ -258,9 +258,9 @@ export const translations = {
         'nav-contact': 'Контакты',
 
         // Hero Section
-        'hero-title': '🌟 Оксана Семенович | Ваш личный астролог',
-        'hero-motto-1': '✨ Знаю то, что скрыто от других',
-        'hero-motto-2': '✨ Ясно. Точно. Логично. Полезно.',
+        'hero-title': '🌟 Оксана Семенович | Астролог-Дева',
+        'hero-motto-1': '✨ Ясно. Точно. Логично. Полезно.',
+        'hero-motto-2': '✨ Знаю то, что скрыто от других',
         'hero-description': 'Представьте: вы наконец понимаете, ПОЧЕМУ ваша жизнь идет именно так, а не иначе. Все эти "случайности" обретают смысл. А самое главное - вы узнаете, как изменить свою судьбу к лучшему. Готовы открыть тайны вашей души?',
         'hero-btn-primary': '🌟 Записаться на консультацию (50€)',
         'hero-btn-secondary': '🔮 Бесплатные астропрогнозы на YouTube',
