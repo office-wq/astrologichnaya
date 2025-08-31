@@ -101,6 +101,7 @@
                 <button class="lang-btn active" data-lang="uk">UK</button>
                 <button class="lang-btn" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="pl">PL</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
             </div>
             <div class="nav-toggle">
                 <span></span>
@@ -151,11 +152,11 @@
             <div class="star-map-container">
                 <canvas id="starMap" class="star-map"></canvas>
                 <div class="star-map-overlay">
-                    <h3>🌟 Інтерактивна карта зоряного неба</h3>
-                    <p>Натисніть на зірки для магічного прогнозу!</p>
+                    <h3 data-translate="star-map-title">🌟 Інтерактивна карта зоряного неба</h3>
+                    <p data-translate="star-map-desc">Натисніть на зірки для магічного прогнозу!</p>
                     <div class="constellation-info" id="constellationInfo">
-                        <div class="constellation-name">Оберіть сузір'я</div>
-                        <div class="constellation-prediction">Ваше майбутнє буде яскравим!</div>
+                        <div class="constellation-name" data-translate="constellation-select">Оберіть сузір'я</div>
+                        <div class="constellation-prediction" data-translate="constellation-default">Ваше майбутнє буде яскравим!</div>
                     </div>
                 </div>
             </div>
@@ -176,7 +177,7 @@
                     <div class="service-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 data-uk="🎓 Курс 'Я-астролог'" data-en="🎓 Course 'I-am-Astrologer'" data-pl="🎓 Kurs 'Jestem-astrologiem'">🎓 Курс 'Я-астролог'</h3>
+                    <h3 data-translate="service-2-title">🎓 Курс 'Я-астролог'</h3>
                     <p data-uk="Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!" data-en="Are you ready to become an astrologer? My course in Vedic astrology has been highly praised even by those who have already studied in other schools. Unlock the secrets of the stars with me!" data-pl="Czy jesteś gotowy zostać astrologiem? Mój kurs z astrologii wedyjskiej został wysoko oceniony nawet przez tych, którzy już uczyli się w innych szkołach. Odkryj tajemnice gwiazd ze mną!" data-uk="Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!">
                         Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!
                     </p>
@@ -200,8 +201,8 @@
 
             <!-- Interactive Tarot Cards -->
             <div class="tarot-section">
-                <h3>🔮 Інтерактивні карти Таро</h3>
-                <p>Виберіть карту та отримайте персональне передбачення!</p>
+                <h3 data-translate="tarot-title">🔮 Інтерактивні карти Таро</h3>
+                <p data-translate="tarot-desc">Виберіть карту та отримайте персональне передбачення!</p>
                 <div class="tarot-deck" id="tarotDeck">
                     <div class="tarot-card" data-card="0">
                         <div class="card-inner">
@@ -231,14 +232,14 @@
                 <div class="tarot-result" id="tarotResult" style="display: none;">
                     <h4>🌟 Ваше передбачення:</h4>
                     <p id="tarotMessage"></p>
-                    <button class="btn btn-secondary" onclick="shuffleTarot()">Перетасувати карти</button>
+                    <button class="btn btn-secondary" data-translate="tarot-shuffle" onclick="shuffleTarot()">Перетасувати карти</button>
                 </div>
             </div>
 
             <!-- Interactive Zodiac Wheel -->
             <div class="zodiac-section">
-                <h3>🌟 Інтерактивний Зодіак</h3>
-                <p>Оберіть свій знак зодіаку та отримайте персональний прогноз!</p>
+                <h3 data-translate="zodiac-title">🌟 Інтерактивний Зодіак</h3>
+                <p data-translate="zodiac-desc">Оберіть свій знак зодіаку та отримайте персональний прогноз!</p>
                 <div class="zodiac-wheel-container">
                     <canvas id="zodiacWheel" width="400" height="400"></canvas>
                     <div class="zodiac-info" id="zodiacInfo">
