@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>🌟 Оксана Семенович | Ведический астролог-прогнозист</title>
     <meta name="description" content="Ведический астролог-прогнозист Оксана Семенович. Автор YouTube-канала 'Астрология доступна каждому!'. Консультации, обучение, астропрогнозы.">
     
@@ -98,7 +99,8 @@
                 <a href="#contact" data-translate="nav-contact">Контакти</a>
             </div>
             <div class="nav-lang">
-                <button class="lang-btn active" data-lang="uk">UK</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="uk">UK</button>
                 <button class="lang-btn" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="pl">PL</button>
             </div>
@@ -117,9 +119,14 @@
                 <h1 data-translate="hero-title">
                     🌟 Оксана Семенович | Астролог-Діва
                 </h1>
-                <h2 class="hero-motto" data-translate="hero-motto">
+                <div class="motto-card">
+                    <div class="motto-front" data-translate="hero-motto-1">
+                        ✨ Знаю те, що приховано від інших
+                    </div>
+                    <div class="motto-back" data-translate="hero-motto-2">
                     ✨ Чітко. Точно. Логічно. Корисно.
-                </h2>
+                    </div>
+                </div>
                 <p data-translate="hero-description">
                     Чи відчували ви, що щось більше чекає на вас? Чи готові ви відкрити своє справжнє призначення? Я допоможу вам знайти відповіді, які змінять ваше життя назавжди.
                 </p>
@@ -138,6 +145,14 @@
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-star"></i>
                 </div>
+                <div class="floating-dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="dot dot-3"></div>
+                    <div class="dot dot-4"></div>
+                    <div class="dot dot-5"></div>
+                    <div class="dot dot-6"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -146,22 +161,6 @@
     <section id="services" class="services">
         <div class="container">
             <h2 data-translate="services-title">🔮 Мої послуги</h2>
-<<<<<<< HEAD
-=======
-
-            <!-- Интерактивная звездная карта -->
-            <div class="star-map-container">
-                <canvas id="starMap" class="star-map"></canvas>
-                <div class="star-map-overlay">
-                    <h3>🌟 Інтерактивна карта зоряного неба</h3>
-                    <p>Натисніть на зірки для магічного прогнозу!</p>
-                    <div class="constellation-info" id="constellationInfo">
-                        <div class="constellation-name">Оберіть сузір'я</div>
-                        <div class="constellation-prediction">Ваше майбутнє буде яскравим!</div>
-                    </div>
-                </div>
-            </div>
->>>>>>> wow-features
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -174,87 +173,35 @@
                      <div class="service-price">
                          <span data-translate="service-1-price">🌟 від 50€</span>
                      </div>
+                     <a href="#contact" class="btn btn-primary service-btn" data-translate="service-1-btn">🌟 Записатися</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 data-uk="🎓 Курс 'Я-астролог'" data-en="🎓 Course 'I-am-Astrologer'" data-pl="🎓 Kurs 'Jestem-astrologiem'">🎓 Курс 'Я-астролог'</h3>
-                    <p data-uk="Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!" data-en="Are you ready to become an astrologer? My course in Vedic astrology has been highly praised even by those who have already studied in other schools. Unlock the secrets of the stars with me!" data-pl="Czy jesteś gotowy zostać astrologiem? Mój kurs z astrologii wedyjskiej został wysoko oceniony nawet przez tych, którzy już uczyli się w innych szkołach. Odkryj tajemnice gwiazd ze mną!" data-uk="Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!">
+                    <h3 data-translate="service-2-title">🎓 Курс 'Я-астролог'</h3>
+                    <p data-translate="service-2-desc">
                         Чи готові ви стати астрологом? Мій курс по ведичній астрології високо оцінили навіть ті, хто вже навчався в інших школах. Розкрийте таємниці зірок разом зі мною!
                     </p>
                     <div class="service-price">
-                        <span data-uk="🎓 Деталі на сайті" data-en="🎓 Details on website" data-pl="🎓 Szczegóły na stronie">🎓 Деталі на сайті</span>
+                        <span data-translate="service-2-price">🎓 Деталі на сайті</span>
                     </div>
+                    <a href="#contact" class="btn btn-primary service-btn" data-translate="service-2-btn">🎓 Записатися на курс</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 data-uk="📊 Астропрогнози" data-en="📊 Astro Forecasts" data-pl="📊 Prognozy astrologiczne">📊 Астропрогнози</h3>
-                    <p data-uk="Щомісячні астропрогнози, які збуваються з вражаючою точністю! Підписуйтесь на мій YouTube-канал 'Астрологія доступна кожному!' та отримуйте корисну інформацію першими." data-en="Monthly astro forecasts that come true with amazing accuracy! Subscribe to my YouTube channel 'Astrology is accessible to everyone!' and get useful information first." data-pl="Miesięczne prognozy astrologiczne, które się spełniają z zadziwiającą dokładnością! Subskrybuj mój kanał YouTube 'Astrologia dostępna dla każdego!' i otrzymuj przydatne informacje jako pierwszy.">
+                    <h3 data-translate="service-3-title">📊 Астропрогнози</h3>
+                    <p data-translate="service-3-desc">
                         Щомісячні астропрогнози, які збуваються з вражаючою точністю! Підписуйтесь на мій YouTube-канал 'Астрологія доступна кожному!' та отримуйте корисну інформацію першими.
                     </p>
                     <div class="service-price">
-                        <span data-uk="📊 Безкоштовно" data-en="📊 Free" data-pl="📊 Darmowo">📊 Безкоштовно</span>
+                        <span data-translate="service-3-price">📊 Безкоштовно</span>
+                    </div>
+                    <a href="https://www.youtube.com/@astrologichnaya" target="_blank" class="btn btn-secondary service-btn" data-translate="service-3-btn">📺 Переглянути</a>
                     </div>
                 </div>
-            </div>
-<<<<<<< HEAD
-=======
-
-            <!-- Interactive Tarot Cards -->
-            <div class="tarot-section">
-                <h3>🔮 Інтерактивні карти Таро</h3>
-                <p>Виберіть карту та отримайте персональне передбачення!</p>
-                <div class="tarot-deck" id="tarotDeck">
-                    <div class="tarot-card" data-card="0">
-                        <div class="card-inner">
-                            <div class="card-front">✨</div>
-                            <div class="card-back">
-                                <div class="card-meaning">Сила та мудрість будуть з вами</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tarot-card" data-card="1">
-                        <div class="card-inner">
-                            <div class="card-front">🌙</div>
-                            <div class="card-back">
-                                <div class="card-meaning">Нові можливості відкриються скоро</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tarot-card" data-card="2">
-                        <div class="card-inner">
-                            <div class="card-front">🔮</div>
-                            <div class="card-back">
-                                <div class="card-meaning">Ваші мрії стануть реальністю</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tarot-result" id="tarotResult" style="display: none;">
-                    <h4>🌟 Ваше передбачення:</h4>
-                    <p id="tarotMessage"></p>
-                    <button class="btn btn-secondary" onclick="shuffleTarot()">Перетасувати карти</button>
-                </div>
-            </div>
-
-            <!-- Interactive Zodiac Wheel -->
-            <div class="zodiac-section">
-                <h3>🌟 Інтерактивний Зодіак</h3>
-                <p>Оберіть свій знак зодіаку та отримайте персональний прогноз!</p>
-                <div class="zodiac-wheel-container">
-                    <canvas id="zodiacWheel" width="400" height="400"></canvas>
-                    <div class="zodiac-info" id="zodiacInfo">
-                        <div class="zodiac-symbol" id="zodiacSymbol">♈</div>
-                        <div class="zodiac-name" id="zodiacName">Овен</div>
-                        <div class="zodiac-prediction" id="zodiacPrediction">Оберіть свій знак зодіаку</div>
-                        <div class="zodiac-dates" id="zodiacDates">21 березня - 19 квітня</div>
-                    </div>
-                </div>
-            </div>
->>>>>>> wow-features
         </div>
     </section>
 
@@ -263,29 +210,29 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2 data-uk="🔮 Про мене - Оксана Семенович" data-en="🔮 About Me - Oksana Semenovich" data-pl="🔮 O mnie - Oksana Semenovich">🔮 Про мене - Оксана Семенович</h2>
-                    <p data-uk="Я не просто астролог - я провідник між світами. Ведичний астролог-прогнозист з багаторічним досвідом, автор YouTube-каналу 'Астрологія доступна кожному!', де щомісяця публікую доступні, збуваючіся з вражаючою точністю астропрогнози." data-en="I am not just an astrologer - I am a guide between worlds. A Vedic astrologer-predictor with years of experience, author of the YouTube channel 'Astrology is accessible to everyone!', where I publish accessible, amazingly accurate monthly astro forecasts." data-pl="Nie jestem tylko astrologiem - jestem przewodnikiem między światami. Wedyjski astrolog-przewidywacz z wieloletnim doświadczeniem, autor kanału YouTube 'Astrologia dostępna dla każdego!', gdzie co miesiąc publikuję dostępne, spełniające się z zadziwiającą dokładnością prognozy astrologiczne.">
+                    <h2 data-translate="about-title">🔮 Про мене - Оксана Семенович</h2>
+                    <p data-translate="about-desc-1">
                         Я не просто астролог - я провідник між світами. Ведичний астролог-прогнозист з багаторічним досвідом, автор YouTube-каналу 'Астрологія доступна кожному!', де щомісяця публікую доступні, збуваючіся з вражаючою точністю астропрогнози.
                     </p>
-                    <p data-uk="На основі свого практичного досвіду я створила курс по ведичній астрології 'Я-астролог', який високо оцінили навіть ті, хто вже навчався в інших школах астрології. Кожна консультація - це священна подорож у глибини вашої душі." data-en="Based on my practical experience, I created a course in Vedic astrology 'I-am-Astrologer', which was highly praised even by those who have already studied in other astrology schools. Every consultation is a sacred journey into the depths of your soul." data-pl="Na podstawie swojego praktycznego doświadczenia stworzyłam kurs z astrologii wedyjskiej 'Jestem-astrologiem', który został wysoko oceniony nawet przez tych, którzy już uczyli się w innych szkołach astrologii. Każda konsultacja to święta podróż w głębiny Twojej duszy.">
+                    <p data-translate="about-desc-2">
                         На основі свого практичного досвіду я створила курс по ведичній астрології 'Я-астролог', який високо оцінили навіть ті, хто вже навчався в інших школах астрології. Кожна консультація - це священна подорож у глибини вашої душі.
                     </p>
                     <div class="credentials">
                         <div class="credential">
                             <i class="fas fa-certificate"></i>
-                            <span data-uk="🌟 Ведичний астролог-прогнозист" data-en="🌟 Vedic Astrologer-Predictor" data-pl="🌟 Wedyjski astrolog-przewidywacz">🌟 Ведичний астролог-прогнозист</span>
+                            <span data-translate="credential-1">🌟 Ведичний астролог-прогнозист</span>
                         </div>
                         <div class="credential">
                             <i class="fas fa-youtube"></i>
-                            <span data-uk="🔮 YouTube канал 'Астрологія доступна кожному!'" data-en="🔮 YouTube Channel 'Astrology is accessible to everyone!'" data-pl="🔮 Kanał YouTube 'Astrologia dostępna dla każdego!'">🔮 YouTube канал 'Астрологія доступна кожному!'</span>
+                            <span data-translate="credential-2">🔮 YouTube канал 'Астрологія доступна кожному!'</span>
                         </div>
                         <div class="credential">
                             <i class="fas fa-graduation-cap"></i>
-                            <span data-uk="🎓 Автор курсу 'Я-астролог'" data-en="🎓 Author of 'I-am-Astrologer' Course" data-pl="🎓 Autorka kursu 'Jestem-astrologiem'">🎓 Автор курсу 'Я-астролог'</span>
+                            <span data-translate="credential-3">🎓 Автор курсу 'Я-астролог'</span>
                         </div>
                         <div class="credential">
                             <i class="fas fa-star"></i>
-                            <span data-uk="⭐ Астролог-Діва. Чітко. Точно. Логічно. Корисно." data-en="⭐ Astrologer-Virgo. Clear. Accurate. Logical. Useful." data-pl="⭐ Astrolog-Panna. Jasno. Dokładnie. Logicznie. Użytecznie.">⭐ Астролог-Діва. Чітко. Точно. Логічно. Корисно.</span>
+                            <span data-translate="credential-4">⭐ Астролог-Діва. Чітко. Точно. Логічно. Корисно.</span>
                         </div>
                     </div>
                 </div>
@@ -301,89 +248,89 @@
     <!-- Contact & Payment Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 data-uk="🌟 Готові розкрити своє призначення?" data-en="🌟 Ready to Unlock Your Purpose?" data-pl="🌟 Gotowy odkryć swoje przeznaczenie?">🌟 Готові розкрити своє призначення?</h2>
+            <h2 data-translate="contact-title">🌟 Готові розкрити своє призначення?</h2>
             <div class="contact-content">
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name" data-uk="🌟 Ваше священне ім'я" data-en="🌟 Your Sacred Name" data-pl="🌟 Twoje święte imię">🌟 Ваше священне ім'я</label>
+                            <label for="name" data-translate="contact-name">🌟 Ваше священне ім'я</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email" data-uk="🔮 Ваш магічний Email" data-en="🔮 Your Magical Email" data-pl="🔮 Twój magiczny Email">🔮 Ваш магічний Email</label>
+                            <label for="email" data-translate="contact-email">🔮 Ваш магічний Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone" data-uk="💫 Ваш космічний телефон" data-en="💫 Your Cosmic Phone" data-pl="💫 Twój kosmiczny telefon">💫 Ваш космічний телефон</label>
+                            <label for="phone" data-translate="contact-phone">💫 Ваш космічний телефон</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
                         <div class="form-group">
-                            <label for="service" data-uk="🔮 Оберіть вашу магію" data-en="🔮 Choose Your Magic" data-pl="🔮 Wybierz swoją magię">🔮 Оберіть вашу магію</label>
+                            <label for="service" data-translate="contact-service">🔮 Оберіть вашу магію</label>
                             <select id="service" name="service" required>
-                                <option value="" data-uk="🌟 Оберіть магічну послугу" data-en="🌟 Choose a magical service" data-pl="🌟 Wybierz magiczną usługę">🌟 Оберіть магічну послугу</option>
-                                <option value="personal" data-uk="🌟 Персональна консультація" data-en="🌟 Personal Consultation" data-pl="🌟 Konsultacja osobista">🌟 Персональна консультація</option>
-                                <option value="course" data-uk="🎓 Курс 'Я-астролог'" data-en="🎓 Course 'I-am-Astrologer'" data-pl="🎓 Kurs 'Jestem-astrologiem'">🎓 Курс 'Я-астролог'</option>
-                                <option value="forecast" data-uk="📊 Астропрогнози" data-en="📊 Astro Forecasts" data-pl="📊 Prognozy astrologiczne">📊 Астропрогнози</option>
+                                <option value="" data-translate="contact-service-placeholder">🌟 Оберіть магічну послугу</option>
+                                <option value="personal" data-translate="service-1-title">🌟 Персональна консультація</option>
+                                <option value="course" data-translate="service-2-title">🎓 Курс 'Я-астролог'</option>
+                                <option value="forecast" data-translate="service-3-title">📊 Астропрогнози</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message" data-uk="✨ Ваше священне послання" data-en="✨ Your Sacred Message" data-pl="✨ Twoje święte przesłanie">✨ Ваше священне послання</label>
-                            <textarea id="message" name="message" rows="4" data-uk="🌟 Опишіть, що ви відчуваєте та що хочете змінити у своєму житті..." data-en="🌟 Describe what you feel and what you want to change in your life..." data-pl="🌟 Opisz, co czujesz i co chcesz zmienić w swoim życiu...">🌟 Опишіть, що ви відчуваєте та що хочете змінити у своєму житті...</textarea>
+                            <label for="message" data-translate="contact-message">✨ Ваше священне послання</label>
+                            <textarea id="message" name="message" rows="4" data-translate="contact-message-placeholder">🌟 Опишіть, що ви відчуваєте та що хочете змінити у своєму житті...</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" data-uk="🌟 Розкрити своє призначення" data-en="🌟 Unlock Your Purpose" data-pl="🌟 Odkryj swoje przeznaczenie">
+                        <button type="submit" class="btn btn-primary" data-translate="contact-submit">
                             🌟 Розкрити своє призначення
                         </button>
                     </form>
                 </div>
                 <div class="contact-info-sidebar">
-                    <h3 data-uk="💫 Зв'яжіться зі мною" data-en="💫 Contact Me" data-pl="💫 Skontaktuj się ze mną">💫 Зв'яжіться зі мною</h3>
+                    <h3 data-translate="contact-sidebar-title">💫 Зв'яжіться зі мною</h3>
                     
                     <div class="contact-method">
                         <a href="https://t.me/astrologichnaya" target="_blank" class="contact-link">
                             <i class="fab fa-telegram"></i>
-                            <span data-uk="Telegram" data-en="Telegram" data-pl="Telegram">Telegram</span>
+                            <span data-translate="telegram">Telegram</span>
                         </a>
                     </div>
                     
                     <div class="contact-method">
                         <a href="https://api.whatsapp.com/send/?phone=48690275119&text&type=phone_number&app_absent=0" target="_blank" class="contact-link">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-uk="WhatsApp" data-en="WhatsApp" data-pl="WhatsApp">WhatsApp</span>
+                            <span data-translate="whatsapp">WhatsApp</span>
                         </a>
                     </div>
                     
                     <div class="contact-method">
                         <a href="https://www.instagram.com/astrologichnaya" target="_blank" class="contact-link">
                             <i class="fab fa-instagram"></i>
-                            <span data-uk="Instagram" data-en="Instagram" data-pl="Instagram">Instagram</span>
+                            <span data-translate="instagram">Instagram</span>
                         </a>
                     </div>
                     
                     <div class="contact-method">
                         <a href="https://www.youtube.com/@astrologichnaya" target="_blank" class="contact-link">
                             <i class="fab fa-youtube"></i>
-                            <span data-uk="YouTube" data-en="YouTube" data-pl="YouTube">YouTube</span>
+                            <span data-translate="youtube">YouTube</span>
                         </a>
                     </div>
                     
                     <div class="payment-section">
-                        <h3 data-uk="💫 Оплата вашої магії" data-en="💫 Payment for Your Magic" data-pl="💫 Płatność za Twoją magię">💫 Оплата вашої магії</h3>
+                        <h3 data-translate="payment-title">💫 Оплата вашої магії</h3>
                         <div class="payment-methods">
                             <div class="payment-method">
                                 <i class="fab fa-paypal"></i>
-                                <span>PayPal</span>
+                                <span data-translate="paypal">PayPal</span>
                             </div>
                             <div class="payment-method">
                                 <i class="fab fa-stripe"></i>
-                                <span>Stripe</span>
+                                <span data-translate="stripe">Stripe</span>
                             </div>
                             <div class="payment-method">
                                 <i class="fas fa-credit-card"></i>
-                                <span data-uk="💳 Космічна карта" data-en="💳 Cosmic Card" data-pl="💳 Kosmiczna karta">💳 Космічна карта</span>
+                                <span data-translate="payment-card">💳 Космічна карта</span>
                             </div>
                         </div>
                         <div class="payment-info">
-                            <p data-uk="🌟 Безпечна оплата через захищені космічні системи" data-en="🌟 Secure payment through protected cosmic systems" data-pl="🌟 Bezpieczna płatność przez chronione kosmiczne systemy">
+                            <p data-translate="payment-info">
                                 🌟 Безпечна оплата через захищені космічні системи
                             </p>
                             <div class="security-badges">
@@ -402,22 +349,22 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 data-uk="🌟 Оксана Семенович" data-en="🌟 Oksana Semenovich" data-pl="🌟 Oksana Semenovich">🌟 Оксана Семенович</h3>
-                    <p data-uk="🌟 Ведичний астролог-прогнозист. Розкрийте таємниці вашої душі та знайдіть своє справжнє призначення" data-en="🌟 Vedic astrologer-predictor. Unlock the secrets of your soul and find your true purpose" data-pl="🌟 Wedyjski astrolog-przewidywacz. Odkryj tajemnice swojej duszy i znajdź swoje prawdziwe przeznaczenie">
+                    <h3 data-translate="footer-name">🌟 Оксана Семенович</h3>
+                    <p data-translate="footer-desc">
                         🌟 Ведичний астролог-прогнозист. Розкрийте таємниці вашої душі та знайдіть своє справжнє призначення
                     </p>
                 </div>
                 <div class="footer-section">
-                    <h3 data-uk="🌟 Контакти" data-en="🌟 Contact" data-pl="🌟 Kontakt">🌟 Контакти</h3>
+                    <h3 data-translate="footer-contacts">🌟 Контакти</h3>
                     <div class="contact-info">
                         <p><i class="fab fa-telegram"></i> <a href="https://t.me/astrologichnaya" target="_blank">@astrologichnaya</a></p>
                         <p><i class="fab fa-whatsapp"></i> <a href="https://api.whatsapp.com/send/?phone=48690275119&text&type=phone_number&app_absent=0" target="_blank">+48 690 275 119</a></p>
                         <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/astrologichnaya" target="_blank">@astrologichnaya</a></p>
-                        <p><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/@astrologichnaya" target="_blank">Астрологія доступна кожному!</a></p>
+                        <p><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/@astrologichnaya" target="_blank" data-translate="footer-astrology">Астрологія доступна кожному!</a></p>
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3 data-uk="🌟 Соціальні мережі" data-en="🌟 Social Media" data-pl="🌟 Media społecznościowe">🌟 Соціальні мережі</h3>
+                    <h3 data-translate="footer-social">🌟 Соціальні мережі</h3>
                     <div class="social-links">
                         <a href="https://t.me/astrologichnaya" target="_blank"><i class="fab fa-telegram"></i></a>
                         <a href="https://www.instagram.com/astrologichnaya" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -427,7 +374,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 🌟 Оксана Семенович. <span data-uk="🌟 Всі права захищені космічним законом" data-en="🌟 All rights protected by cosmic law" data-pl="🌟 Wszystkie prawa chronione prawem kosmicznym">🌟 Всі права захищені космічним законом</span></p>
+                <p data-translate="footer-copyright">&copy; 2025 🌟 Оксана Семенович.</p>
+                <p data-translate="footer-rights">🌟 Всі права захищені космічним законом</p>
             </div>
         </div>
     </footer>
@@ -437,14 +385,14 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <i class="fas fa-check-circle success-icon"></i>
-            <h3 data-uk="🌟 Ваше призначення розкрито!" data-en="🌟 Your Purpose is Unlocked!" data-pl="🌟 Twoje przeznaczenie zostało odkryte!">🌟 Ваше призначення розкрито!</h3>
-            <p data-uk="🌟 Я зв'яжуся з вами найближчим часом, щоб розкрити таємниці вашої душі та показати шлях до вашого найвищого потенціалу." data-en="🌟 I will contact you soon to reveal the secrets of your soul and show you the path to your highest potential." data-pl="🌟 Skontaktuję się z Tobą wkrótce, aby ujawnić tajemnice Twojej duszy i pokazać Ci ścieżkę do Twojego najwyższego potencjału.">
+            <h3 data-translate="modal-title">🌟 Ваше призначення розкрито!</h3>
+            <p data-translate="modal-message">
                 🌟 Я зв'яжуся з вами найближчим часом, щоб розкрити таємниці вашої душі та показати шлях до вашого найвищого потенціалу.
             </p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -512,3 +460,157 @@
     </script>
 </body>
 </html>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Google Analytics 4 -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('js', new Date());
+
+        gtag('config', 'GA_MEASUREMENT_ID', {
+
+            page_title: document.title,
+
+            page_location: window.location.href
+
+        });
+
+    </script>
+
+    
+
+    <!-- Facebook Pixel -->
+
+    <script>
+
+        !function(f,b,e,v,n,t,s)
+
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+        n.queue=[];t=b.createElement(e);t.async=!0;
+
+        t.src=v;s=b.getElementsByTagName(e)[0];
+
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', 'YOUR_PIXEL_ID');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript>
+
+        <img height="1" width="1" style="display:none" 
+
+             src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+
+    </noscript>
+
+    
+
+    <!-- Service Worker for PWA -->
+
+    <script>
+
+        if ('serviceWorker' in navigator) {
+
+            window.addEventListener('load', function() {
+
+                navigator.serviceWorker.register('/sw.js')
+
+                    .then(function(registration) {
+
+                        console.log('SW registered: ', registration);
+
+                    })
+
+                    .catch(function(registrationError) {
+
+                        console.log('SW registration failed: ', registrationError);
+
+                    });
+
+            });
+
+        }
+
+    </script>
+
+    
+
+    <!-- Performance Monitoring -->
+
+    <script>
+
+        // Core Web Vitals
+
+        if ('PerformanceObserver' in window) {
+
+            const observer = new PerformanceObserver((list) => {
+
+                for (const entry of list.getEntries()) {
+
+                    if (entry.entryType === 'largest-contentful-paint') {
+
+                        console.log('LCP:', entry.startTime);
+
+                        gtag('event', 'LCP', {value: Math.round(entry.startTime)});
+
+                    }
+
+                    if (entry.entryType === 'first-input') {
+
+                        console.log('FID:', entry.processingStart - entry.startTime);
+
+                        gtag('event', 'FID', {value: Math.round(entry.processingStart - entry.startTime)});
+
+                    }
+
+                }
+
+            });
+
+            observer.observe({entryTypes: ['largest-contentful-paint', 'first-input']});
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
