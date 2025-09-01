@@ -132,18 +132,27 @@ const translations = {
 
 // Функция определения языка браузера
 function detectBrowserLanguage() {
-    const browserLang = navigator.language || navigator.userLanguage;
-    const lang = browserLang.split('-')[0]; // Получаем только основную часть (ru, uk, en, pl)
+    try {
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (!browserLang) {
+            return 'en'; // Fallback если язык не определен
+        }
+        
+        const lang = browserLang.split('-')[0].toLowerCase(); // Получаем только основную часть (ru, uk, en, pl)
 
-    // Специальная логика для определения языка
-    if (lang === 'ru') {
-        return 'en'; // Русский браузер -> английский сайт
-    } else if (lang === 'uk') {
-        return 'uk'; // Украинский браузер -> украинский сайт
-    } else if (lang === 'pl') {
-        return 'pl'; // Польский браузер -> польский сайт
-    } else {
-        return 'en'; // Все остальные -> английский сайт
+        // Специальная логика для определения языка
+        if (lang === 'ru') {
+            return 'en'; // Русский браузер -> английский сайт
+        } else if (lang === 'uk') {
+            return 'uk'; // Украинский браузер -> украинский сайт
+        } else if (lang === 'pl') {
+            return 'pl'; // Польский браузер -> польский сайт
+        } else {
+            return 'en'; // Все остальные -> английский сайт
+        }
+    } catch (error) {
+        console.warn('Error detecting browser language:', error);
+        return 'en'; // Fallback при ошибке
     }
 }
 
@@ -152,6 +161,12 @@ let currentLang = detectBrowserLanguage();
 
 // Функция смены языка
 function changeLanguage(lang) {
+    // Проверяем, что язык поддерживается
+    if (!translations[lang]) {
+        console.warn(`Language '${lang}' is not supported, falling back to 'en'`);
+        lang = 'en';
+    }
+    
     currentLang = lang;
     
     // Обновляем активную кнопку
@@ -177,6 +192,9 @@ function changeLanguage(lang) {
             } else {
                 element.textContent = translations[lang][key];
             }
+        } else {
+            // Fallback для отсутствующих переводов
+            console.warn(`Translation missing for key '${key}' in language '${lang}'`);
         }
     });
     
@@ -191,8 +209,12 @@ function updateMottoCard(lang) {
         const front = mottoCard.querySelector('.motto-front');
         const back = mottoCard.querySelector('.motto-back');
         
-        if (front) front.textContent = translations[lang]['hero-motto-1'];
-        if (back) back.textContent = translations[lang]['hero-motto-2'];
+        if (front && translations[lang] && translations[lang]['hero-motto-1']) {
+            front.textContent = translations[lang]['hero-motto-1'];
+        }
+        if (back && translations[lang] && translations[lang]['hero-motto-2']) {
+            back.textContent = translations[lang]['hero-motto-2'];
+        }
     }
 }
 
@@ -221,19 +243,36 @@ document.addEventListener('DOMContentLoaded', function() {
         initMottoCard();
         console.log('initMottoCard completed');
         
-        // Инициализируем все остальные компоненты
+        // Инициализируем все остальные компоненты с проверками
         console.log('Initializing FormHandler...');
-        new FormHandler();
+        if (document.getElementById('contactForm')) {
+            new FormHandler();
+        }
+        
         console.log('Initializing StarMap...');
-        new StarMap();
+        if (document.getElementById('starMap')) {
+            new StarMap();
+        }
+        
         console.log('Initializing MagicParticles...');
-        new MagicParticles();
+        if (document.querySelector('.magic-particles')) {
+            new MagicParticles();
+        }
+        
         console.log('Initializing TarotCards...');
-        window.tarotInstance = new TarotCards();
+        if (document.querySelector('.tarot-section')) {
+            window.tarotInstance = new TarotCards();
+        }
+        
         console.log('Initializing ZodiacWheel...');
-        new ZodiacWheel();
+        if (document.querySelector('.zodiac-wheel')) {
+            new ZodiacWheel();
+        }
+        
         console.log('Initializing FloatingSymbols...');
-        new FloatingSymbols();
+        if (document.querySelector('.floating-symbols')) {
+            new FloatingSymbols();
+        }
         
         // Инициализируем мобильную навигацию
         console.log('Initializing mobile navigation...');
@@ -401,6 +440,12 @@ function initMottoCard() {
             if (returnTimer) clearTimeout(returnTimer);
         });
         
+        // Очищаем таймеры при уходе со страницы
+        window.addEventListener('beforeunload', () => {
+            if (autoFlipTimer) clearInterval(autoFlipTimer);
+            if (returnTimer) clearTimeout(returnTimer);
+        });
+        
         console.log('Motto card initialization complete');
     } else {
         console.error('Motto card not found!');
@@ -418,7 +463,8 @@ class FormHandler {
     
     init() {
         if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.form.addEventListener('submit', this.handleSubmit);
         }
         
         if (this.modal) {
@@ -475,26 +521,49 @@ class FormHandler {
     }
     
     bindModalEvents() {
+        if (!this.modal) return;
+        
         const closeBtn = this.modal.querySelector('.close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                this.modal.style.display = 'none';
+                this.hideModal();
             });
         }
         
         // Close modal when clicking outside
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) {
-                this.modal.style.display = 'none';
+                this.hideModal();
             }
         });
         
         // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
+        const handleEscape = (e) => {
             if (e.key === 'Escape' && this.modal.style.display === 'block') {
-                this.modal.style.display = 'none';
+                this.hideModal();
             }
-        });
+        };
+        
+        document.addEventListener('keydown', handleEscape);
+        
+        // Store reference for cleanup
+        this.escapeHandler = handleEscape;
+    }
+    
+    hideModal() {
+        if (this.modal) {
+            this.modal.style.display = 'none';
+        }
+    }
+    
+    // Cleanup method to prevent memory leaks
+    destroy() {
+        if (this.escapeHandler) {
+            document.removeEventListener('keydown', this.escapeHandler);
+        }
+        if (this.form) {
+            this.form.removeEventListener('submit', this.handleSubmit);
+        }
     }
 }
 
@@ -503,22 +572,37 @@ class FormHandler {
 class StarMap {
     constructor() {
         this.canvas = document.getElementById('starMap');
-        if (!this.canvas) return;
+        if (!this.canvas) {
+            console.warn('StarMap canvas not found');
+            return;
+        }
 
         this.ctx = this.canvas.getContext('2d');
+        if (!this.ctx) {
+            console.error('Could not get 2D context for StarMap canvas');
+            return;
+        }
+
         this.stars = [];
         this.constellations = [];
         this.animating = false;
         this.selectedStar = null;
+        this.resizeHandler = this.resize.bind(this);
 
-        this.init();
-        this.createStars();
-        this.createConstellations();
-        this.animate();
+        try {
+            this.init();
+            this.createStars();
+            this.createConstellations();
+            this.animate();
 
-        // Add click handler
-        this.canvas.addEventListener('click', (e) => this.handleClick(e));
-        this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+            // Add click handler
+            this.handleClick = this.handleClick.bind(this);
+            this.handleMouseMove = this.handleMouseMove.bind(this);
+            this.canvas.addEventListener('click', this.handleClick);
+            this.canvas.addEventListener('mousemove', this.handleMouseMove);
+        } catch (error) {
+            console.error('Error initializing StarMap:', error);
+        }
     }
 
     init() {
@@ -734,6 +818,18 @@ class StarMap {
         this.ctx.globalAlpha = 1;
 
         requestAnimationFrame(() => this.animateParticle(particle));
+    }
+    
+    // Cleanup method to prevent memory leaks
+    destroy() {
+        this.animating = false;
+        if (this.resizeHandler) {
+            window.removeEventListener('resize', this.resizeHandler);
+        }
+        if (this.canvas) {
+            this.canvas.removeEventListener('click', this.handleClick);
+            this.canvas.removeEventListener('mousemove', this.handleMouseMove);
+        }
     }
 }
 
