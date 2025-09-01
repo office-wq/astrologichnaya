@@ -2107,7 +2107,6 @@ section h2 {
         animation: slideInRight 0.3s ease-out;
     }
 }
-
 /* Enhanced mobile toggle animations */
 @media (max-width: 768px) {
     .nav-toggle span {
@@ -2186,3 +2185,46 @@ section h2 {
         animation: slideInRight 0.3s ease-out;
     }
 }
+
+/* Mobile responsive fixes for header overlap */
+@media (max-width: 768px) {
+    .hero {
+        padding: 7rem 1rem 4rem;
+        /* Add extra top padding for mobile to account for header */
+        padding-top: 8rem;
+    }
+    
+    .header {
+        /* Ensure header doesn't overlap on mobile */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Add margin-top to all sections to prevent header overlap */
+    section {
+        scroll-margin-top: 80px;
+    }
+    
+    /* Ensure proper spacing for anchor links */
+    html {
+        scroll-padding-top: 80px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 0.5rem 3rem;
+        padding-top: 7rem;
+    }
+    
+    .header {
+        padding: 0.5rem 1rem;
+    }
+}
+

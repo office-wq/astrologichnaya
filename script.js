@@ -1,134 +1,5 @@
-// Переводы для всех языков
-const translations = {
-    uk: {
-        'page-title': '🌟 Оксана Семенович | Ведический астролог-прогнозист',
-        'nav-brand': '🌟 Астрологічна',
-        'nav-home': 'Головна',
-        'nav-services': 'Послуги',
-        'nav-about': 'Про мене',
-        'nav-contact': 'Контакти',
-        'hero-title': 'Оксана Семенович | Астролог-Діва',
-        'hero-motto-1': 'Чітко. Точно. Логічно. Корисно.',
-        'hero-motto-2': 'Я-Оксана',
-        'hero-subtitle': 'Ведический астролог-прогнозист',
-        'hero-description': 'Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии.',
-        'services-title': 'Мої послуги',
-        'service-1-title': 'Персональна консультація',
-        'service-1-description': 'Детальний аналіз вашої натальної карти з практичними рекомендаціями',
-        'service-1-price': '50€',
-        'service-2-title': 'Курс «Я-астролог»',
-        'service-2-description': 'Повноцінне навчання ведичній астрології з нуля',
-        'service-2-price': '300€',
-        'service-3-title': 'Астропрогнози',
-        'service-3-description': 'Щомісячні прогнози для всіх знаків зодіаку',
-        'service-3-price': 'Безкоштовно',
-        'about-title': 'Про мене',
-        'about-content': 'Ведический астролог-прогнозист Оксана Семенович. Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии. На основании своего практического опыта я создала курс по ведической астрологии «Я-астролог», который высоко оценили даже те, кто уже учился в других школах астрологии.',
-        'contact-title': 'Зв\'яжіться зі мною',
-        'contact-description': 'Оберіть зручний для вас спосіб зв\'язку',
-        'form-name': 'Ваше ім\'я',
-        'form-email': 'Ваш email',
-        'form-message': 'Ваше повідомлення',
-        'form-submit': 'Надіслати',
-        'footer-copyright': '© 2025 Оксана Семенович. Всі права захищені.'
-    },
-    en: {
-        'page-title': '🌟 Oksana Semenovich | Vedic Astrologer-Forecaster',
-        'nav-brand': '🌟 Astrological Shop',
-        'nav-home': 'Home',
-        'nav-services': 'Services',
-        'nav-about': 'About',
-        'nav-contact': 'Contact',
-        'hero-title': 'Oksana Semenovich | Astrologer-Virgo',
-        'hero-motto-1': 'Clear. Precise. Logical. Useful.',
-        'hero-motto-2': 'I-Oksana',
-        'hero-subtitle': 'Vedic Astrologer-Forecaster',
-        'hero-description': 'Author of the YouTube channel "Astrology is accessible to everyone!", where every month I publish accessible, amazingly accurate astrological forecasts and share other useful and interesting information about astrology.',
-        'services-title': 'My Services',
-        'service-1-title': 'Personal Consultation',
-        'service-1-description': 'Detailed analysis of your natal chart with practical recommendations',
-        'service-1-price': '50€',
-        'service-2-title': 'Course "I-Astrologer"',
-        'service-2-description': 'Complete training in Vedic astrology from scratch',
-        'service-2-price': '300€',
-        'service-3-title': 'Astrological Forecasts',
-        'service-3-description': 'Monthly forecasts for all zodiac signs',
-        'service-3-price': 'Free',
-        'about-title': 'About Me',
-        'about-content': 'Vedic astrologer-forecaster Oksana Semenovich. Author of the YouTube channel "Astrology is accessible to everyone!", where every month I publish accessible, amazingly accurate astrological forecasts and share other useful and interesting information about astrology. Based on my practical experience, I created a course in Vedic astrology "I-Astrologer", which was highly appreciated even by those who had already studied in other astrology schools.',
-        'contact-title': 'Contact Me',
-        'contact-description': 'Choose a convenient way to contact me',
-        'form-name': 'Your name',
-        'form-email': 'Your email',
-        'form-message': 'Your message',
-        'form-submit': 'Send',
-        'footer-copyright': '© 2025 Oksana Semenovich. All rights reserved.'
-    },
-    pl: {
-        'page-title': '🌟 Oksana Semenovich | Astrolog Wedyjski-Prognostyk',
-        'nav-brand': '🌟 Sklep Astrologiczny',
-        'nav-home': 'Strona główna',
-        'nav-services': 'Usługi',
-        'nav-about': 'O mnie',
-        'nav-contact': 'Kontakt',
-        'hero-title': 'Oksana Semenovich | Astrolog-Panna',
-        'hero-motto-1': 'Jasno. Dokładnie. Logicznie. Użytecznie.',
-        'hero-motto-2': 'Ja-Oksana',
-        'hero-subtitle': 'Astrolog Wedyjski-Prognostyk',
-        'hero-description': 'Autorka kanału YouTube "Astrologia dostępna dla każdego!", gdzie co miesiąc publikuję dostępne, zadziwiająco dokładne prognozy astrologiczne i dzielę się innymi przydatnymi i interesującymi informacjami o astrologii.',
-        'services-title': 'Moje usługi',
-        'service-1-title': 'Konsultacja osobista',
-        'service-1-description': 'Szczegółowa analiza twojej karty natalnej z praktycznymi zaleceniami',
-        'service-1-price': '50€',
-        'service-2-title': 'Kurs "Ja-Astrolog"',
-        'service-2-description': 'Kompletne szkolenie z astrologii wedyjskiej od podstaw',
-        'service-2-price': '300€',
-        'service-3-title': 'Prognozy astrologiczne',
-        'service-3-description': 'Miesięczne prognozy dla wszystkich znaków zodiaku',
-        'service-3-price': 'Za darmo',
-        'about-title': 'O mnie',
-        'about-content': 'Astrolog wedyjski-prognostyk Oksana Semenovich. Autorka kanału YouTube "Astrologia dostępna dla każdego!", gdzie co miesiąc publikuję dostępne, zadziwiająco dokładne prognozy astrologiczne i dzielę się innymi przydatnymi i interesującymi informacjami o astrologii. Na podstawie mojego praktycznego doświadczenia stworzyłam kurs astrologii wedyjskiej "Ja-Astrolog", który został wysoko oceniony nawet przez tych, którzy już uczyli się w innych szkołach astrologii.',
-        'contact-title': 'Skontaktuj się ze mną',
-        'contact-description': 'Wybierz wygodny dla siebie sposób kontaktu',
-        'form-name': 'Twoje imię',
-        'form-email': 'Twój email',
-        'form-message': 'Twoja wiadomość',
-        'form-submit': 'Wyślij',
-        'footer-copyright': '© 2025 Oksana Semenovich. Wszelkie prawa zastrzeżone.'
-    },
-    ru: {
-        'page-title': '🌟 Оксана Семенович | Ведический астролог-прогнозист',
-        'nav-brand': '🌟 Астрологическая',
-        'nav-home': 'Главная',
-        'nav-services': 'Услуги',
-        'nav-about': 'Обо мне',
-        'nav-contact': 'Контакты',
-        'hero-title': 'Оксана Семенович | Астролог-Дева',
-        'hero-motto-1': 'Четко. Точно. Логично. Полезно.',
-        'hero-motto-2': 'Я-Оксана',
-        'hero-subtitle': 'Ведический астролог-прогнозист',
-        'hero-description': 'Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии.',
-        'services-title': 'Мои услуги',
-        'service-1-title': 'Персональная консультация',
-        'service-1-description': 'Детальный анализ вашей натальной карты с практическими рекомендациями',
-        'service-1-price': '50€',
-        'service-2-title': 'Курс «Я-астролог»',
-        'service-2-description': 'Полноценное обучение ведической астрологии с нуля',
-        'service-2-price': '300€',
-        'service-3-title': 'Астропрогнозы',
-        'service-3-description': 'Ежемесячные прогнозы для всех знаков зодиака',
-        'service-3-price': 'Бесплатно',
-        'about-title': 'Обо мне',
-        'about-content': 'Ведический астролог-прогнозист Оксана Семенович. Автор YouTube-канала «Астрология доступна каждому!», где каждый месяц я публикую доступные, сбывающиеся с поразительной точностью, астропрогнозы и делюсь другой полезной и интересной информацией по астрологии. На основании своего практического опыта я создала курс по ведической астрологии «Я-астролог», который высоко оценили даже те, кто уже учился в других школах астрологии.',
-        'contact-title': 'Свяжитесь со мной',
-        'contact-description': 'Выберите удобный для вас способ связи',
-        'form-name': 'Ваше имя',
-        'form-email': 'Ваш email',
-        'form-message': 'Ваше сообщение',
-        'form-submit': 'Отправить',
-        'footer-copyright': '© 2025 Оксана Семенович. Все права защищены.'
-    }
-};
+// Импорт переводов из отдельного файла
+import { translations } from './translations.js';
 
 // Функция определения языка браузера
 function detectBrowserLanguage() {
@@ -158,6 +29,46 @@ function detectBrowserLanguage() {
 
 // Текущий язык
 let currentLang = detectBrowserLanguage();
+// Глобальная переменная для доступа из других модулей
+window.currentLang = currentLang;
+
+// Инициализация выпадающего меню языков
+function initLanguageDropdown() {
+    const langCurrent = document.getElementById('langCurrent');
+    const langMenu = document.getElementById('langMenu');
+    const langDropdown = document.querySelector('.lang-dropdown');
+    
+    if (!langCurrent || !langMenu) return;
+    
+    // Обработчик клика по текущему языку
+    langCurrent.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langDropdown.classList.toggle('open');
+    });
+    
+    // Обработчики для опций языка
+    langMenu.querySelectorAll('.lang-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            changeLanguage(lang);
+            langDropdown.classList.remove('open');
+        });
+    });
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (!langDropdown.contains(e.target)) {
+            langDropdown.classList.remove('open');
+        }
+    });
+    
+    // Закрытие меню по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            langDropdown.classList.remove('open');
+        }
+    });
+}
 
 // Функция смены языка
 function changeLanguage(lang) {
@@ -168,14 +79,19 @@ function changeLanguage(lang) {
     }
     
     currentLang = lang;
+    // Обновляем глобальную переменную
+    window.currentLang = lang;
     
-    // Обновляем активную кнопку
+    // Обновляем активную кнопку (для совместимости)
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-lang') === lang) {
             btn.classList.add('active');
         }
     });
+    
+    // Обновляем выпадающее меню
+    updateLanguageDropdown(lang);
     
     // Обновляем заголовок страницы
     if (translations[lang] && translations[lang]['page-title']) {
@@ -202,6 +118,44 @@ function changeLanguage(lang) {
     updateMottoCard(lang);
 }
 
+// Функция обновления выпадающего меню языков
+function updateLanguageDropdown(lang) {
+    const langCurrent = document.getElementById('langCurrent');
+    if (!langCurrent) return;
+    
+    const langFlags = {
+        'uk': '🇺🇦',
+        'en': '🇺🇸',
+        'pl': '🇵🇱',
+        'ru': '🇷🇺'
+    };
+    
+    const langCodes = {
+        'uk': 'UK',
+        'en': 'EN',
+        'pl': 'PL',
+        'ru': 'RU'
+    };
+    
+    const langNames = {
+        'uk': 'Українська',
+        'en': 'English',
+        'pl': 'Polski',
+        'ru': 'Русский'
+    };
+    
+    // Обновляем флаг и код
+    const flagSpan = langCurrent.querySelector('.lang-flag');
+    const codeSpan = langCurrent.querySelector('.lang-code');
+    
+    if (flagSpan) flagSpan.textContent = langFlags[lang] || '🇺🇦';
+    if (codeSpan) codeSpan.textContent = langCodes[lang] || 'UK';
+    
+    // Обновляем название в выпадающем меню
+    const langOption = document.querySelector(`[data-lang="${lang}"] .lang-name`);
+    if (langOption) langOption.textContent = langNames[lang] || 'Українська';
+}
+
 // Функция обновления переворачивающейся таблички с девизами
 function updateMottoCard(lang) {
     const mottoCard = document.querySelector('.motto-card');
@@ -220,7 +174,10 @@ function updateMottoCard(lang) {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Добавляем обработчики для кнопок языка
+    // Инициализируем выпадающее меню языков
+    initLanguageDropdown();
+    
+    // Добавляем обработчики для кнопок языка (для совместимости)
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
@@ -481,7 +438,7 @@ class FormHandler {
         // Show loading state
         const submitBtn = this.form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Надсилається...';
+        submitBtn.textContent = this.getLoadingText();
         submitBtn.disabled = true;
         
         try {
@@ -496,12 +453,35 @@ class FormHandler {
             
         } catch (error) {
             console.error('Form submission error:', error);
-            alert('Помилка відправки. Спробуйте ще раз.');
+            this.showError();
         } finally {
             // Restore button state
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }
+    }
+    
+    getLoadingText() {
+        // Получаем текст загрузки на текущем языке
+        const currentLang = window.currentLang || 'uk';
+        const loadingTexts = {
+            'uk': 'Надсилається...',
+            'en': 'Sending...',
+            'pl': 'Wysyłanie...',
+            'ru': 'Отправляется...'
+        };
+        return loadingTexts[currentLang] || loadingTexts['uk'];
+    }
+    
+    showError() {
+        const currentLang = window.currentLang || 'uk';
+        const errorTexts = {
+            'uk': 'Помилка відправки. Спробуйте ще раз.',
+            'en': 'Sending error. Please try again.',
+            'pl': 'Błąd wysyłania. Spróbuj ponownie.',
+            'ru': 'Ошибка отправки. Попробуйте еще раз.'
+        };
+        alert(errorTexts[currentLang] || errorTexts['uk']);
     }
     
     async simulateApiCall(data) {

@@ -1,32 +1,44 @@
-// Конфигурация для отправки заявок
-// Замените эти значения на свои реальные данные
+// Конфигурация для астрологического сайта
+// Безопасная конфигурация для статического хостинга
 
 const CONFIG = {
-    // Telegram Bot настройки
-    TELEGRAM: {
-        BOT_TOKEN: 'ВАШ_TELEGRAM_BOT_TOKEN', // Получите у @BotFather
-        CHAT_ID: 'ВАШ_TELEGRAM_CHAT_ID',     // ID вашего канала или группы
-        ENABLED: false  // Включить отправку в Telegram
+    // Основные настройки сайта
+    SITE: {
+        NAME: 'Астрологічна',
+        DESCRIPTION: 'Ведический астролог-прогнозист Оксана Семенович',
+        URL: 'https://astrologichnaya.com',
+        EMAIL: 'oksana@astrologichnaya.com'
     },
 
-    // Web3Forms настройки
-    WEB3FORMS: {
-        ACCESS_KEY: 'ВАШ_WEB3FORMS_ACCESS_KEY', // Получите на web3forms.com
-        ENABLED: false  // Включить отправку через Web3Forms
-    },
-
-    // Email настройки для резервной копии
-    EMAIL: {
-        TO: 'oksana@astrologichnaya.com',  // Ваш email
-        SUBJECT: 'Нова заявка на консультацію'
-    },
-
-    // Контактная информация
+    // Контактная информация (публичная)
     CONTACTS: {
         WHATSAPP: '+48690275119',
         TELEGRAM: '@astrologichnaya',
         INSTAGRAM: '@astrologichnaya',
         YOUTUBE: '@astrologichnaya'
+    },
+
+    // Настройки форм (без токенов)
+    FORMS: {
+        // Используем простую отправку на email
+        EMAIL_ENABLED: true,
+        // Или можно использовать Formspree, Netlify Forms и т.д.
+        FORMSPREE_ENABLED: false,
+        NETLIFY_ENABLED: false
+    },
+
+    // Настройки анимаций
+    ANIMATIONS: {
+        ENABLED: true,
+        DURATION: 300,
+        EASING: 'ease-in-out'
+    },
+
+    // Настройки производительности
+    PERFORMANCE: {
+        LAZY_LOADING: true,
+        IMAGE_OPTIMIZATION: true,
+        CACHE_ENABLED: true
     }
 };
 

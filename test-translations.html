@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест переводов</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .lang-btn { margin: 5px; padding: 10px; cursor: pointer; }
+        .lang-btn.active { background: #007bff; color: white; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        [data-translate] { margin: 10px 0; padding: 5px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Тест системы переводов</h1>
+    
+    <div class="lang-buttons">
+        <button class="lang-btn active" data-lang="uk">🇺🇦 Українська</button>
+        <button class="lang-btn" data-lang="en">🇺🇸 English</button>
+        <button class="lang-btn" data-lang="pl">🇵🇱 Polski</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Навігація</h2>
+        <div data-translate="nav-brand">🌟 Астрологічна</div>
+        <div data-translate="nav-home">Головна</div>
+        <div data-translate="nav-services">Послуги</div>
+        <div data-translate="nav-about">Про мене</div>
+        <div data-translate="nav-contact">Контакти</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Головна секція</h2>
+        <div data-translate="hero-title">🌟 Оксана Семенович | Астролог-Діва</div>
+        <div data-translate="hero-motto-1">✨ Чітко. Точно. Логічно. Корисно.</div>
+        <div data-translate="hero-motto-2">✨ Знаю те, що приховано від інших</div>
+        <div data-translate="hero-description">Чи відчували ви, що щось більше чекає на вас?</div>
+        <div data-translate="hero-btn-primary">🌟 Записатися на консультацію (50€)</div>
+        <div data-translate="hero-btn-secondary">🔮 Безкоштовні астропрогнози на YouTube</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Послуги</h2>
+        <div data-translate="services-title">🔮 Мої послуги</div>
+        <div data-translate="service-1-title">🌟 Персональна консультація</div>
+        <div data-translate="service-1-desc">Уявіть собі, що ви нарешті розумієте...</div>
+        <div data-translate="service-1-price">🌟 від 50€</div>
+        <div data-translate="service-1-btn">🌟 Записатися</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Про мене</h2>
+        <div data-translate="about-title">🔮 Про мене - Оксана Семенович</div>
+        <div data-translate="credential-1">🌟 Ведичний астролог-прогнозист</div>
+        <div data-translate="credential-2">🔮 YouTube канал 'Астрологія доступна кожному!'</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Контакти</h2>
+        <div data-translate="contact-title">🌟 Готові розкрити своє призначення?</div>
+        <div data-translate="contact-name">🌟 Ваше священне ім'я</div>
+        <div data-translate="contact-email">🔮 Ваш магічний Email</div>
+        <div data-translate="contact-submit">🌟 Розкрити своє призначення</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Футер</h2>
+        <div data-translate="footer-name">🌟 Оксана Семенович</div>
+        <div data-translate="footer-desc">🌟 Ведичний астролог-прогнозист...</div>
+        <div data-translate="footer-copyright">© 2025 🌟 Оксана Семенович.</div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
