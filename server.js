@@ -20,39 +20,63 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = '.' + req.url;
-    
-    // Если запрос корневой, показываем index.html
-    if (filePath === './') {
-        filePath = './index.html';
-    }
-    
-    // Получаем расширение файла
-    const extname = path.extname(filePath);
-    let contentType = mimeTypes[extname] || 'application/octet-stream';
-    
-    // Читаем файл
-    fs.readFile(filePath, (err, content) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                // Файл не найден
-                res.writeHead(404);
-                res.end('File not found');
-            } else {
-                // Ошибка сервера
-                res.writeHead(500);
-                res.end('Server error: ' + err.code);
-            }
-        } else {
-            // Успешно - отдаем файл с правильным MIME-типом
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
+    try {
+        let filePath = '.' + req.url;
+        
+        // Если запрос корневой, показываем index.html
+        if (filePath === './') {
+            filePath = './index.html';
         }
-    });
+        
+        // Проверяем безопасность пути
+        const normalizedPath = path.normalize(filePath);
+        if (!normalizedPath.startsWith('.')) {
+            res.writeHead(403);
+            res.end('Forbidden');
+            return;
+        }
+        
+        // Получаем расширение файла
+        const extname = path.extname(filePath);
+        let contentType = mimeTypes[extname] || 'application/octet-stream';
+        
+        // Читаем файл
+        fs.readFile(filePath, (err, content) => {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    // Файл не найден
+                    res.writeHead(404, { 'Content-Type': 'text/plain' });
+                    res.end('File not found');
+                } else {
+                    // Ошибка сервера
+                    console.error('Server error:', err);
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Server error: ' + err.code);
+                }
+            } else {
+                // Успешно - отдаем файл с правильным MIME-типом
+                res.writeHead(200, { 'Content-Type': contentType });
+                res.end(content, 'utf-8');
+            }
+        });
+    } catch (error) {
+        console.error('Server error:', error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Internal server error');
+    }
 });
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
     console.log('Press Ctrl+C to stop the server');
+});
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+    console.log('\nReceived SIGINT. Shutting down gracefully...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
 });
