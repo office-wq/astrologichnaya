@@ -32,6 +32,7 @@ body {
     background: var(--bg-primary);
     overflow-x: hidden;
     position: relative;
+    padding-top: 80px; /* Adjust based on header height */
 }
 
 body::before {
@@ -79,16 +80,16 @@ body::before {
     to { transform: rotate(360deg); }
 }
 
-/* Header */
+/* Fix header positioning to prevent overlap */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-    z-index: 1000;
     transition: all 0.3s ease;
 }
 
@@ -161,26 +162,102 @@ body::before {
 
 .nav-lang {
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    position: relative;
 }
 
-.lang-btn {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--border-color);
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-current {
     background: white;
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 14px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    justify-content: space-between;
 }
 
-.lang-btn:hover,
-.lang-btn.active {
+.lang-current:hover {
     border-color: var(--mystical-purple);
     background: var(--mystical-purple);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+
+.lang-flag {
+    font-size: 16px;
+}
+
+.lang-code {
+    font-weight: 600;
+}
+
+.lang-current i {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.lang-dropdown.open .lang-current i {
+    transform: rotate(180deg);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 10px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lang-dropdown.open .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+}
+
+.lang-option:hover {
+    background: var(--mystical-purple);
+    color: white;
+}
+
+.lang-option .lang-flag {
+    font-size: 18px;
+}
+
+.lang-option .lang-name {
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .nav-toggle {
@@ -203,6 +280,8 @@ body::before {
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
+    /* Ensure proper spacing from header */
+    margin-top: 0;
 }
 
 .hero::before {
@@ -2183,48 +2262,6 @@ section h2 {
     
     .nav-menu.active {
         animation: slideInRight 0.3s ease-out;
-    }
-}
-
-/* Mobile responsive fixes for header overlap */
-@media (max-width: 768px) {
-    .hero {
-        padding: 7rem 1rem 4rem;
-        /* Add extra top padding for mobile to account for header */
-        padding-top: 8rem;
-    }
-    
-    .header {
-        /* Ensure header doesn't overlap on mobile */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-    }
-    
-    /* Add margin-top to all sections to prevent header overlap */
-    section {
-        scroll-margin-top: 80px;
-    }
-    
-    /* Ensure proper spacing for anchor links */
-    html {
-        scroll-padding-top: 80px;
-    }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-    .hero {
-        padding: 6rem 0.5rem 3rem;
-        padding-top: 7rem;
-    }
-    
-    .header {
-        padding: 0.5rem 1rem;
     }
 }
 
